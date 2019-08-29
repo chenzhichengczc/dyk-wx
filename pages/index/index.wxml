@@ -19,7 +19,6 @@
   <view class='goods'>
 
   <block  wx:for="{{goods}}" wx:for-item='good' wx:key='*this' >
-
     <template is="good" data="{{good:good}}"/>
   </block>
   

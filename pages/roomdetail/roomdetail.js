@@ -195,8 +195,6 @@ wx.openLocation({
   }
 })
     },
-
-
         onReady(){
         const that = this;
         console.log('onReady');

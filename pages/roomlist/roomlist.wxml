@@ -3,7 +3,7 @@
 <view class='container'>
   <view class='search'>
     <icon type="search" color="#4c4c4c" size="18"></icon>
-    <input type="text" maxlength="100" placeholder="输入商户名、地名、找优惠" placeholder-style="color:#999999" />
+    <input type="text" maxlength="100" placeholder="输入房间号，房间名搜索" placeholder-style="color:#999999" />
   </view>
   <view class='navbtns'>
     <view class='navitem nearby' bindtap='navitation' data-id='01'>

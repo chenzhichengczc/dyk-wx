@@ -3,6 +3,7 @@ App({
   onLaunch: function () {
     //调用API从本地缓存中获取数据
     const that = this;
+    that.urls();
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs);
@@ -12,6 +13,14 @@ App({
       }
     })
   },
+
+  siteInfo: require("config.js"),
+
+  urls: function () {
+    var that = this;
+    that.globalData.urls = that.siteInfo.config.url + that.siteInfo.config.subDomain;
+  },
+
   getUserInfo:function(cb){
     var that = this
     if(this.globalData.userInfo){
@@ -34,4 +43,5 @@ App({
     userInfo:null
   },
   systemInfo:null,
+  
 })

@@ -259,7 +259,7 @@ Page({
     storelick(event){
         const that = this;
         wx.navigateTo({
-          url: '../store/store',
+          url: '../roomdetail/roomdetail',
         })
     }
 })

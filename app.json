@@ -1,16 +1,43 @@
 {
   "pages": [
+    
     "pages/index/index",
-    "pages/storelist/storelist",
-    "pages/store/store",
-    "pages/goods/goods",
+    "pages/roomlist/roomlist",
+    "pages/roomdetail/roomdetail",
+    "pages/my/my",
     "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#181818",
-    "navigationBarTitleText": "婚庆啦",
+    "navigationBarTitleText": "大约客",
     "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#838383",
+    "selectedColor": "#b4282d",
+    "borderStyle": "white",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/nav/home-off.png",
+        "selectedIconPath": "images/nav/home-on.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/roomlist/roomlist",
+        "iconPath": "images/nav/menu-off.png",
+        "selectedIconPath": "images/nav/menu-on.png",
+        "text": "加入房间"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "images/nav/my-off.png",
+        "selectedIconPath": "images/nav/my-on.png",
+        "text": "我的"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json"
 }

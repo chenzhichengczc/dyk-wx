@@ -19,7 +19,7 @@ page{
 }
 
 .funcs .func{
-    width: 25%;
+    width: 33%;
     text-align: center;
     margin-bottom: 30rpx;
 }
