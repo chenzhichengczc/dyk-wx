@@ -136,7 +136,8 @@
         <view class="info_item bottom_line">
           <text class="lt">套餐详情</text>
           <block wx:for='{{carArray}}' wx:index='index' wx:key='index'>
-            {{item.name}} ({{item.num}}份) : {{item.price * item.num}}
+          
+            <!-- {{item.name}} ({{item.num}}份) : {{item.price * item.num}} -->
           </block>
         </view>
       </view>

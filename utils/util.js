@@ -16,6 +16,18 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
+//生成房间号
+const randomRoomId = rId => {
+  return Math.floor(Math.random() * 100000000);
+}
+
+//生成订单号
+const orderRoomId = oId => {
+  return Math.floor(Math.random() * 100000000);
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  randomRoomId: randomRoomId,
+  orderRoomId: orderRoomId
 }

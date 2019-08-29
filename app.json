@@ -7,6 +7,7 @@
     "pages/my/my",
     "pages/customized/customized",
     "pages/fav-list/fav-list",
+    "pages/menu/menu",
     "pages/logs/logs"
   ],
   "window": {

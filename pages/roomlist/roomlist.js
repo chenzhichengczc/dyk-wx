@@ -98,7 +98,7 @@ Page({
     var that = this;
 
     wx.request({
-      url: app.globalData.urls + '/room/list',
+      url: app.globalData.urls + '/api/room/list',
       success : function(res){
         console.log(res)
         if(res.data.code == 0){

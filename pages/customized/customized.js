@@ -1,4 +1,5 @@
-
+const app = getApp();
+const util = require("../../utils/util.js")
 Page({
   /*
    * 页面的初始数据
@@ -13,26 +14,30 @@ Page({
     num1: 3,
     num2: 0,
 
-    array: ['请选择房间类型', '饭局', '牌局', '酒局', '手游'],
+    array: ['请选择房间类型', '聊天', '游戏', '推广', '招聘', '合伙人'],
     objectArray: [{
         id: 0,
         name: '请选择房间类型'
       },
       {
         id: 1,
-        name: '饭局'
+        name: '聊天'
       },
       {
         id: 2,
-        name: '牌局'
+        name: '游戏'
       },
       {
         id: 3,
-        name: '酒局'
+        name: '推广'
       },
       {
         id: 4,
-        name: '手游'
+        name: '招聘'
+      },
+      {
+        id: 5,
+        name: '合伙人'
       }
     ],
     roomTypeIndex: 0,
@@ -43,7 +48,7 @@ Page({
     region: ['广东省', '广州市', '番禺区'],
     customItem: '全部',
     totalPrice: 0,
-    carArray: '[{}]',
+    carArray: [],
     k7: [{
       arr_guige02: '会员',
       guige_key02: 0
@@ -64,6 +69,8 @@ Page({
     var orderId = util.orderRoomId();
     var carArray = JSON.stringify(this.data.carArray);
 
+    var wxData = "";
+
     wx.setStorageSync("formData", formData);
     wx.setStorageSync("carArray", carArray);
     var formData = wx.getStorageSync("formData");
@@ -74,7 +81,7 @@ Page({
     end = end.replace(/-/g, "\/")
     var address = formData.addressArea + "," + formData.addressDetail,
       address = address.replace(/,/g, "");
-    if ('0000/00/00 00:00' === time || '0000/00/00 00:00' === end){
+    if ('0000/00/00 00:00' === time || '0000/00/00 00:00' === end) {
       wx.showToast({
         title: '请输入举行时间',
         mask: true,
@@ -89,103 +96,77 @@ Page({
       })
       validate = false;
     }
-    console.log(validate)
-    if(validate){
+    if (validate) {
       wx: wx.request({
-        url: 'https://www.gzjckc.cn/wxPay',
+        url: app.globalData.urls + '/api/wxPay',
         data: {
           body: "活动参与支付押金",
           orderOn: orderId,
-          payNum: "10",
-          openId: getApp().globalData.openId,
+          payNum: "1",
+          openId: app.globalData.openId,
           roomId: roomId,
           refundFee: "0"
         },
         header: {
+          "token" : app.globalData.token,
           'content-type': 'application/x-www-form-urlencoded'
         },
         method: 'POST',
         dataType: 'json',
         responseType: 'text',
-        success: function (res) {
-          var data = res.data.data;
-          // 生成预付款单
-          wx.requestPayment({
-            timeStamp: data.timeStamp,
-            nonceStr: data.nonceStr,
-            package: data.package,
-            signType: 'MD5',
-            paySign: data.paySign,
-            success: function (res) {
-              if (res.errMsg == "requestPayment:ok") {
-
-                wx.request({
-                  url: 'https://www.gzjckc.cn/wx/room/insert',
-                  data: {
-                    openId: getApp().globalData.openId,
-                    id: roomId,
-                    roomName: formData.roomName,
-                    roomTopic: formData.roomTopic,
-                    roomType: formData.roomType,
-                    totalPrice: formData.totalPrice,
-                    address: address,
-                    roomVolume: formData.roomVolume,
-                    startTime: time,
-                    endTime: end,
-                    roomDescribtion: formData.content,
-                    name: formData.name,
-                    phone: formData.mobile,
-                    email: formData.email,
-                    member: 1,
-                    carArray: carArray
-                  },
-                  header: {
-                    'content-type': 'application/x-www-form-urlencoded' // 默认值
-                  },
-                  method: "post",
-                  success: function (e) {
-                    if (e.data.code == 0) {
-                      wx.showToast({
-                        title: '审核已经提交',
-                        mask: true,
-                        duration: 2000,
-                        success: function () {
-                          setTimeout(function () {
-                            wx.navigateTo({
-                              url: '../index/index',
-                            })
-                          }, 2000);
-                        }
-                      })
-                    } else {
-                      wx.showToast({
-                        title: "服务器异常,稍后再试",
-                        icon: "none",
-                        mask: true,
-                        duration: 2000,
-                        success: function () {
-                          setTimeout(function () {
-                            wx.navigateTo({
-                              url: '../index/index',
-                            })
-                          }, 2000);
-                        }
-                      })
-                    }
+        success: function(res) {
+          wxData = res.data.data;
+          if (res.data.code == 0) {
+            wx.request({
+              url: app.globalData.urls + '/api/room/insert',
+              data: {
+                openId: app.globalData.openId,
+                id: roomId,
+                roomName: formData.roomName,
+                roomTopic: formData.roomTopic,
+                roomType: formData.roomType,
+                totalPrice: formData.totalPrice,
+                address: address,
+                roomVolume: formData.roomVolume,
+                startTime: time,
+                endTime: end,
+                roomDescribtion: formData.content,
+                name: formData.name,
+                phone: formData.mobile,
+                email: formData.email,
+                member: 1,
+                carArray: carArray
+              },
+              header: {
+                "token" : app.globalData.token,
+                'content-type': 'application/x-www-form-urlencoded' // 默认值
+              },
+              method: "post",
+              success: function(e) {
+                // 生成预付款单
+                wx.requestPayment({
+                  timeStamp: wxData.timeStamp,
+                  nonceStr: wxData.nonceStr,
+                  package: wxData.package,
+                  signType: 'MD5',
+                  paySign: wxData.paySign,
+                  success: function (res) {
+                    wx.switchTab({
+                      url: '/pages/index/index',
+                    })
                   }
                 })
               }
-            }
-          })
-
+            })
+          }
         },
-        fail: function (res) {
+        fail: function(res) {
           console.log("--------fail--------");
         },
-        complete: function (res) { },
+        complete: function(res) {},
       })
     }
-    
+
   },
 
 
