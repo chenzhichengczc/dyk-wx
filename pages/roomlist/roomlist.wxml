@@ -23,7 +23,7 @@
   </view>
   <view class='wrap'>
     <scroll-view class='scroller' style="width:{{width}}px;" scroll-y="true" lower-threshold="800" bindscrolltolower="loadmore">
-      <block wx:for='{{storelist}}' wx:for-item='store' wx:key='*this'>
+      <block wx:for='{{roomlist}}' wx:for-item='store' wx:key='*this'>
       <template is="store" data="{{store}}"/>
       
       </block>
