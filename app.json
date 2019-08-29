@@ -5,6 +5,8 @@
     "pages/roomlist/roomlist",
     "pages/roomdetail/roomdetail",
     "pages/my/my",
+    "pages/customized/customized",
+    "pages/fav-list/fav-list",
     "pages/logs/logs"
   ],
   "window": {

@@ -1,0 +1,216 @@
+/* 私人定制 */
+
+.banner {
+  width: 100%;
+  height: 250rpx;
+}
+
+.banner image {
+  width: 100%;
+  height: 250rpx;
+}
+
+/* 立即定制 */
+
+.swiper_view {
+  width: 100%;
+  height: 180rpx;
+}
+
+.slide-image {
+  width: 100%;
+  height: 180rpx;
+}
+
+.app .menu {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #fff;
+  border-bottom: solid 1rpx #f4f5f6;
+}
+
+.menu text {
+  float: left;
+  width: 100%;
+  font-size: 30rpx;
+  text-align: center;
+}
+
+.app  .menu text.active {
+  color: #07b7ce;
+  border-bottom: 5rpx solid #07b7ce;
+}
+
+.dingzhi_base_info {
+  width: 92%;
+  height: auto;
+  padding: 0 4%;
+  background: #fff;
+  margin-top: 20rpx;
+}
+
+.dingzhi_base_info .info_item {
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+}
+
+.dingzhi_base_info .info_item .lt {
+  width: 20%;
+  height: auto;
+  float: left;
+  font-size: 28rpx;
+  color: #515151;
+}
+
+.dingzhi_base_info .info_item .lt_gray_06 {
+  width: 80%;
+  height: auto;
+  float: left;
+  font-size: 28rpx;
+  color: #666;
+  margin-left: 30rpx;
+}
+
+.dingzhi_base_info .info_item .rt {
+  width: auto;
+  height: auto;
+  float: right;
+}
+
+.dingzhi_base_info .info_item .rt_arrow {
+  width: 48rpx;
+  height: 48rpx;
+  margin-top: 26rpx;
+  float: right;
+}
+
+.bottom_line {
+  border-bottom: 1rpx #eee solid;
+}
+
+.btn_sure_dingzhi {
+  width: 80%;
+  height: 80rpx;
+  margin: 40rpx 10%;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  color: #fff;
+  background: #1ba8b9;
+}
+
+.lx_info {
+  font-size: 28rpx;
+  color: #000;
+}
+
+.dingzhi_base_info .info_item input {
+  width: 80%;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 28rpx;
+}
+
+.money_mark {
+  color: #000;
+  font-size: 28rpx;
+  margin-left: 20rpx;
+}
+
+.input_money {
+  width: 100%;
+  height: 100rpx;
+  margin-left: 15rpx;
+}
+
+.info_item .date {
+  width: 60%;
+  font-size: 28rpx;
+}
+
+.info_item .rt {
+  font-size: 28rpx;
+  float: right;
+}
+
+.mark_jian {
+  width: 50rpx;
+  height: 50rpx;
+  margin: 25rpx 0;
+  display: flex;
+  font-size: 28rpx;
+  color: #515151;
+  align-items: center;
+  justify-content: center;
+  background: #e6e6e6;
+  margin-right: 30rpx;
+}
+
+.people_num {
+  font-size: 28rpx;
+  color: #000;
+  margin-right: 30rpx;
+}
+
+.people_title {
+  font-size: 28rpx;
+  color: #000;
+  margin-right: 50rpx;
+}
+
+.mark_jia {
+  width: 50rpx;
+  height: 50rpx;
+  margin: 25rpx 0;
+  display: flex;
+  font-size: 28rpx;
+  color: #515151;
+  align-items: center;
+  justify-content: center;
+  background: #e6e6e6;
+  margin-right: 30rpx;
+}
+
+.bz_info {
+  font-size: 28rpx;
+  color: #515151;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx 0rpx;
+  color: #333;
+}
+
+.section__title {
+  font-size: 40rpx;
+  margin: 10rpx 0rpx;
+}
+
+.icon_arrow {
+  width: 44rpx;
+  height: 44rpx;
+  float: left;
+  margin: 42rpx 10rpx;
+}
+
+.dingzhi_base_info .show {
+  display: flex;
+}
+
+.dingzhi_base_info .hidden {
+  display: none;
+}
+
+.radio {
+  margin-right: 30rpx;
+  margin-left: 10rpx;
+  font-size: 26rpx;
+}
+
+picker {
+  font-size: 24rpx;
+}
