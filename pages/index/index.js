@@ -5,6 +5,8 @@ Page({
   data: {
     width: app.systemInfo.windowWidth,
     height: app.systemInfo.windowHeight,
+    wxlogin: false,
+    toplogo : "/images/logo.png",
     banner: ['http://i.dxlfile.com/adm/material/2016_12_12/20161212135600242250.jpg',
       'http://i.dxlfile.com/adm/material/2017_01_04/2017010411165785666.jpg',
       'http://i.dxlfile.com/adm/material/2017_01_04/20170104140739205869.jpg',

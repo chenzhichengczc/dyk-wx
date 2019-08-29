@@ -1,4 +1,4 @@
-<import src="../../components/good/good.wxml"/>
+<import src="../../components/good/good.wxml" />
 <!--index.wxml-->
 <scroll-view class='scroller' style="width:{{width}}px;height:{{height}}px;" scroll-y="true" lower-threshold="800" bindscrolltolower="loadmore">
   <swiper class='banners' indicator-dots="true" autoplay="true" interval="4000" duration="1000" indicator-color="#60ffffff" indicator-active-color="#fff">
@@ -15,13 +15,30 @@
     </view>
   </view>
   <view class='maylike'>
-  <view class='title'>猜你喜欢</view>
-  <view class='goods'>
+    <view class='title'>猜你喜欢</view>
+    <view class='goods'>
 
-  <block  wx:for="{{goods}}" wx:for-item='good' wx:key='*this' >
-    <template is="good" data="{{good:good}}"/>
-  </block>
-  
+      <block wx:for="{{goods}}" wx:for-item='good' wx:key='*this'>
+        <template is="good" data="{{good:good}}" />
+      </block>
+    </view>
   </view>
+  <view class="show-container" hidden="{{wxlogin}}">
+    <view class="show-box">
+      <view class="show-logo-box">
+        <image src="{{toplogo}}" />
+        <view class="show-mall-name">{{topname}}</view>
+      </view>
+      <view class="show-text-box">
+        <view class="show-text-name">需要您的授权才能正常使用哦！</view>
+        <view class="show-text-info">
+          <text>·</text>请允许我们获得您的公开资讯</view>
+        <view class="show-text-info">
+          <text>·</text>我们不会公布您的这些信息</view>
+        <view class="show-text-info">
+          <text>·</text>只是为了给您提供更好的服务</view>
+      </view>
+      <button open-type="getUserInfo" bindgetuserinfo="userlogin">允许</button>
+    </view>
   </view>
 </scroll-view>
