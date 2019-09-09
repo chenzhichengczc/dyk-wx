@@ -82,31 +82,24 @@ Page({
       },
     ],
     spinners: [],
-    roomlist: [{
-        name: '仁和春天酒店·婚宴',
-        photo: 'http://p0.meituan.net/wedding/d577b0c3f3f5c382f7b33ed0d54366843826610.jpg%40630w_380h_1e_1c_1l%7Cwatermark%3D0',
-        star: 4.4,
-        price: '1599元/桌起',
-        buztype: '星级酒店',
-        km: '1.6km',
-      }
-    ]
+    roomlist: "",
+    km: 100
   },
 
-  onLoad : function(){
+  onLoad: function() {
 
     var that = this;
 
     wx.request({
       url: app.globalData.urls + '/api/room/list',
-      success : function(res){
+      success: function(res) {
         console.log(res)
-        if(res.data.code == 0){
+        if (res.data.code == 0) {
+          console.log(res.data.data)
           that.setData({
-            //roomlist: res.data.data
+            roomlist: res.data.data
           })
         }
-        
       }
     })
 
@@ -115,7 +108,6 @@ Page({
   navitation(event) {
     let id = event.currentTarget.dataset.id;
     const that = this;
-    console.log(id);
     if (id == that.data.selectedNav) {
       id = '00';
       that.setData({
@@ -144,6 +136,7 @@ Page({
   },
 
   spinnerclick(event) {
+    console.log(event)
     const that = this;
     that.setData({
       showspinner: false,
@@ -153,7 +146,7 @@ Page({
   storelick(event) {
     const that = this;
     wx.navigateTo({
-      url: '../roomdetail/roomdetail',
+      url: '../roomdetail/roomdetail?roomId=' + event.currentTarget.dataset.id,
     })
   }
 })

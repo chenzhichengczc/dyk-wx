@@ -26,7 +26,7 @@
       <icon type="success_circle" color="#999999" size="16"></icon>已售{{goods.selled}}</view>
   </view>
   <view class='store'>
-    <view class='title'>适用商户</view>
+    <view class='title'>活动选址</view>
     <view class='storeinfo'>
       <view class='storemain'>
         <view class='name'>{{goods.store.name}}</view>

@@ -24,14 +24,14 @@
   <view class='wrap'>
     <scroll-view class='scroller' style="width:{{width}}px;" scroll-y="true" lower-threshold="800" bindscrolltolower="loadmore">
       <block wx:for='{{roomlist}}' wx:for-item='store' wx:key='*this'>
-      <template is="store" data="{{store}}"/>
+      <template is="store" data="{{store,km}}"/>
       
       </block>
     </scroll-view>
     <view class='spinner' wx:if='{{showspinner}}'>
       <view class='items'>
         <block wx:for="{{spinners}}" wx:for-item='item' wx:key="item.id">
-          <view class='item' bindtap='spinnerclick'>{{item.name}}</view>
+          <view class='item' bindtap='spinnerclick' data-sid='{{item.id}}'>{{item.name}}</view>
         </block>
       </view>
     </view>
