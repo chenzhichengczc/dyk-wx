@@ -9,7 +9,7 @@ App({
         that.systemInfo = res;
       }
     })
-
+    
     //获取授权信息
     that.login();
 
