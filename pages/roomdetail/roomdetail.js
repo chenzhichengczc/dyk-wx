@@ -193,24 +193,24 @@ Page({
     })
   },
   onReady() {
-    const that = this;
-    console.log('onReady');
-    wx.getLocation({
-      type: 'wgs84', // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标
-      success: function(res) {
-        // success
-        console.log(res);
-        that.setData({
-          latitude: res.latitude,
-          longitude: res.longitude,
-        })
-      },
-    })
+    // const that = this;
+    // console.log('onReady');
+    // wx.getLocation({
+    //   type: 'wgs84', // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标
+    //   success: function(res) {
+    //     // success
+    //     console.log(res);
+    //     that.setData({
+    //       latitude: res.latitude,
+    //       longitude: res.longitude,
+    //     })
+    //   },
+    // })
   },
 
   onLoad(options) {
     var roomId = options.roomId;
-
+    console.log(options)
   },
 
   onShow(options) {

@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/roomlist/roomlist",
-    "pages/index/index",
     
+    "pages/index/index",
+    "pages/roomlist/roomlist",
     "pages/roomdetail/roomdetail",
     "pages/my/my",
     "pages/customized/customized",
