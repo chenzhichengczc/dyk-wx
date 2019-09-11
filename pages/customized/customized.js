@@ -41,10 +41,14 @@ Page({
       }
     ],
     roomTypeIndex: 0,
-    startDate: '0000-00-00',
-    startTime: '00:00',
-    endDate: '0000-00-00',
-    endTime: '00:00',
+    startDate: '',
+    startTime: '08:00',
+    startPickerStartDate: '',
+    startPickerEndDate: '',
+    endDate: '',
+    endTime: '08:00',
+    endPickerStartDate: '',
+    endPickerEndDate: '',
     region: ['广东省', '广州市', '番禺区'],
     customItem: '全部',
     totalPrice: 0,
@@ -58,12 +62,14 @@ Page({
     }, {
       arr_guige02: '内部员工',
       guige_key02: 1
-    }]
+    }],
+    validate: true
   },
-
+  
   submit: function(e) {
-    var validate = true;
+    
     var that = this;
+    console.log(that.data.validate)
     var formData = e.detail.value;
     var roomId = util.randomRoomId();
     var orderId = util.orderRoomId();
@@ -86,7 +92,7 @@ Page({
         title: '请输入举行时间',
         mask: true,
       })
-      validate = false;
+      that.data.validate = false;
     }
     console.log("formData.roomVolume:" + formData.roomVolume)
     if (formData.roomVolume == null || formData.roomVolume == '') {
@@ -94,9 +100,17 @@ Page({
         title: '请输入上限人數',
         mask: true,
       })
-      validate = false;
+      that.data.validate = false;
     }
-    if (validate) {
+    //校验备注
+    if (formData.content != null && formData.content.length >= 10) {
+      wx.showToast({
+        title: '备注字数已超出',
+        mask: true,
+      })
+      that.data.validate = false;
+    }
+    if (that.data.validate) {
       wx: wx.request({
         url: app.globalData.urls + '/api/wxPay',
         data: {
@@ -169,6 +183,20 @@ Page({
 
   },
 
+  checkRemark: function(e) {
+      var that = this;
+      var content = e.detail.value;
+      if(content != null && content.length >= 300){
+        wx.showToast({
+          title: '字数已超出',
+          mask: true
+        })
+        that.data.validate = false;
+      }else{
+        that.data.validate = true;
+      }
+
+  },
 
   selectMeal: function() {
     wx.navigateTo({
@@ -189,13 +217,60 @@ Page({
     wx.hideShareMenu({
 
     })
+   
+    
   },
-
 
 
   onShow: function() {
+    debugger
+    //回调字符串转JSON对象
+    if (this.data.carArray != null && typeof (this.data.carArray) == 'string'){
+      var carArray = JSON.parse(this.data.carArray);
+      console.log(carArray.length)
+      for (let i = 0; i < carArray.length; i++) {
+        console.log(carArray[i].name)
+      }
+      this.setData({
+        carArray: carArray
+      });
+      
+    }
     
+    if ((new Date()).getHours() <= 18) {
+      var year = (new Date()).getFullYear()
+      var month = (new Date()).getMonth() +1
+      var day = (new Date()).getDate() +1
+      
+      var pickerStartDate = [year, month, day].map(this.formatNumber).join('-') + ''
+      var pickerEndDate = [year, month, day].map(this.formatNumber).join('-') + ''
+      this.setData({
+        startDate: pickerStartDate,
+        startPickerStartDate: pickerStartDate,
+        endDate: pickerEndDate,
+        endPickerStartDate: pickerEndDate
+      })
+    } else {
+      var year = (new Date()).getFullYear()
+      var month = (new Date()).getMonth() + 1
+      var day = (new Date()).getDate() + 2
+      
+      var pickerStartDate = [year, month, day].map(this.formatNumber).join('-') + ''
+      var pickerEndDate = [year, month, day].map(this.formatNumber).join('-') + ''
+      this.setData({
+        startDate: pickerStartDate,
+        startPickerStartDate: pickerStartDate, 
+        endDate: pickerEndDate,
+        endPickerStartDate: pickerEndDate
+      })
+    }
   },
+
+  formatNumber: function(n){
+    n = n.toString()
+    return n[1] ? n : '0' + n
+  },
+
   // 点击下拉列表
   optionTap(e) {
     let Index = e.currentTarget.dataset.index; //获取点击的下拉列表的下标
@@ -205,14 +280,20 @@ Page({
     });
   },
 
+
+
   bindPickerChange: function(e) {
     this.setData({
       roomTypeIndex: e.detail.value
     })
   },
   bindDateChange: function(e) {
+    console.log(e.detail.value)
     this.setData({
-      startDate: e.detail.value
+      startDate: e.detail.value,
+      endDate: e.detail.value,
+      endPickerStartDate: e.detail.value,
+      endPickerEndDate: e.detail.value
     })
   },
   bindTimeChange: function(e) {

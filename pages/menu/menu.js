@@ -1,4 +1,9 @@
 // pages/goods/goods.js
+
+var pages = getCurrentPages();
+var currPage = pages[pages.length -1];
+var prevPge = pages[pages.length -2];
+
 Page({
   data: {
     goods: [{
