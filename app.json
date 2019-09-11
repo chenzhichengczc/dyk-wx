@@ -1,7 +1,9 @@
 {
   "pages": [
-    "pages/roomlist/roomlist",
+    
     "pages/index/index",
+    "pages/roomlist/roomlist",
+    "pages/join/join",
     
     "pages/roomdetail/roomdetail",
     "pages/my/my",

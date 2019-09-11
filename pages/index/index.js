@@ -98,6 +98,11 @@ Page({
           url: '/pages/fav-list/fav-list',
         });
         break;
+      case "05":
+        wx.navigateTo({
+          url: '/pages/join/join',
+        });
+        break;
     }
 
   },

@@ -16,7 +16,7 @@ App({
   },
 
   siteInfo: require("config.js"),
-
+   
   urls: function() {
     var that = this;
     that.globalData.urls = that.siteInfo.config.url + that.siteInfo.config.subDomain;
@@ -31,8 +31,8 @@ App({
           wx.request({
             url: that.globalData.urls + '/user/getUserInfo',
             data: {
-              appid: "wxfd945e2b4a767dc3",
-              secret: "0d921f83d3a88312703d8771709fb7e1",
+              appid: "wxfd53041bf21b05e9",
+              secret: "f24ff83f42e3b50bdf25b90f683cf140",
               js_code: res.code,
               grantType: 'authorization_code',
 
