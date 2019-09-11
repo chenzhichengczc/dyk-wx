@@ -1,3 +1,5 @@
+var map = require('./amap-wx.js')
+
 function formatTime(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
@@ -10,6 +12,8 @@ function formatTime(date) {
 
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
+
+
 
 function formatNumber(n) {
   n = n.toString()

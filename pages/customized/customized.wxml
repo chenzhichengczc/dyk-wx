@@ -62,7 +62,7 @@
 
       <view class="info_item bottom_line">
         <text class="lt">举行日期</text>
-        <picker mode="date" value="{{startDate}}" start="2019-07-18" end="2019-12-31" bindchange="bindDateChange" name="startDate">
+        <picker mode="date" value="{{startDate}}" start="{{startPickerStartDate}}" end="{{startPickerEndDate}}" bindchange="bindDateChange" name="startDate">
           <view class="picker">
             {{startDate}}
           </view>
@@ -71,7 +71,7 @@
 
       <view class="info_item bottom_line">
         <text class="lt">举行时间</text>
-        <picker mode="time" value="{{startTime}}" start="00:00" end="12:00" bindchange="bindTimeChange" name="startTime">
+        <picker mode="time" value="{{startTime}}" start="08:00" end="18:00" bindchange="bindTimeChange" name="startTime">
           <view class="picker">
             {{startTime}}
           </view>
@@ -80,7 +80,7 @@
 
       <view class="info_item bottom_line">
         <text class="lt">结束日期</text>
-        <picker mode="date" value="{{endDate}}" start="2019-07-18" end="2019-12-31" bindchange="bindEndDateChange" name="endDate">
+        <picker mode="date" value="{{endDate}}" start="{{endPickerStartDate}}" end="{{endPickerEndDate}}"  bindchange="bindEndDateChange" name="endDate">
           <view class="picker">
             {{endDate}}
           </view>
@@ -89,7 +89,7 @@
 
       <view class="info_item bottom_line">
         <text class="lt">结束时间</text>
-        <picker mode="time" value="{{endTime}}" start="00:00" end="12:00" bindchange="bindEndTimeChange" name="endTime">
+        <picker mode="time" value="{{endTime}}" start="08:00" end="20:00" bindchange="bindEndTimeChange" name="endTime">
           <view class="picker">
             {{endTime}}
           </view>
@@ -101,11 +101,11 @@
     <!--备注信息-->
     <view class="dingzhi_base_info">
       <view class="info_item bottom_line">
-        <text class="bz_info">需求备注（选填,50个字以内）</text>
+        <text class="bz_info" >需求备注（选填,300个字以内）</text>
       </view>
 
       <view class="info_item">
-        <input name="content" id="content" placeholder="在这里补充您的其他定制要求" />
+        <input name="content" bindblur="checkRemark" id="content" placeholder="在这里补充您的其他定制要求" />
       </view>
     </view>
 
@@ -136,8 +136,7 @@
         <view class="info_item bottom_line">
           <text class="lt">套餐详情</text>
           <block wx:for='{{carArray}}' wx:index='index' wx:key='index'>
-          
-            <!-- {{item.name}} ({{item.num}}份) : {{item.price * item.num}} -->
+             {{item.name}} ({{item.num}}份) : ¥{{item.price * item.num}} 
           </block>
         </view>
       </view>

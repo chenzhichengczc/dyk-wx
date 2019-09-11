@@ -83,7 +83,7 @@ Page({
     ],
     spinners: [],
     roomlist: "",
-    km: 100
+    km: 0
   },
 
   onLoad: function() {
@@ -93,9 +93,7 @@ Page({
     wx.request({
       url: app.globalData.urls + '/api/room/list',
       success: function(res) {
-        console.log(res)
         if (res.data.code == 0) {
-          console.log(res.data.data)
           that.setData({
             roomlist: res.data.data
           })
@@ -103,6 +101,13 @@ Page({
       }
     })
 
+
+
+  },
+
+  onReady: function() {
+    var that = this;
+    app.getAddress(that);
   },
 
   navitation(event) {
@@ -118,7 +123,6 @@ Page({
         showspinner: true,
       })
     }
-    console.log(id);
     that.setData({
       selectedNav: id,
     })
@@ -136,7 +140,6 @@ Page({
   },
 
   spinnerclick(event) {
-    console.log(event)
     const that = this;
     that.setData({
       showspinner: false,
@@ -145,8 +148,9 @@ Page({
 
   storelick(event) {
     const that = this;
+    const data = that.data;
     wx.navigateTo({
-      url: '../roomdetail/roomdetail?roomId=' + event.currentTarget.dataset.id,
+      url: '../roomdetail/roomdetail?roomId=' + event.currentTarget.dataset.id + '&addr=' + data.addr + '&latitude=' + data.latitude + '&longitude=' + data.longitude
     })
   }
 })
