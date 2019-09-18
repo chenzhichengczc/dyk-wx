@@ -40,6 +40,9 @@ Page({
         name: '合伙人'
       }
     ],
+    member: -1,
+    hasPassword: false,
+    password: '',
     roomTypeIndex: 0,
     startDate: '',
     startTime: '08:00',
@@ -55,13 +58,22 @@ Page({
     carArray: [],
     k7: [{
       arr_guige02: '会员',
-      guige_key02: 0
+      guige_key02: 0,
+      checked: "true"
     }, {
       arr_guige02: '非会员',
       guige_key02: 1
     }, {
       arr_guige02: '内部员工',
-      guige_key02: 1
+      guige_key02: 2
+    }],
+    p7: [{
+      arr_select: '无密码',
+      select_key: 0,
+      checked:"true"
+    },{
+        arr_select: '有密码',
+        select_key: 1
     }],
     validate: true
   },
@@ -74,12 +86,14 @@ Page({
     var roomId = util.randomRoomId();
     var orderId = util.orderRoomId();
     var carArray = JSON.stringify(this.data.carArray);
-
+   
     var wxData = "";
-
+    console.log("m:"+that.data.member)
     wx.setStorageSync("formData", formData);
+    console.log("f:" + formData.password)
     wx.setStorageSync("carArray", carArray);
     var formData = wx.getStorageSync("formData");
+  
     var carArray = wx.getStorageSync("carArray");
     var time = formData.startDate + " " + formData.startTime;
     time = time.replace(/-/g, "\/")
@@ -87,25 +101,97 @@ Page({
     end = end.replace(/-/g, "\/")
     var address = formData.addressArea + "," + formData.addressDetail,
       address = address.replace(/,/g, "");
-    if ('0000/00/00 00:00' === time || '0000/00/00 00:00' === end) {
+    var password = '';
+    if(formData.password == undefined && that.data.hasPassword == false){
+      password = '';
+    }else{
+      password = formData.password
+    }
+    if (formData.roomName == null || formData.roomName == '') {
       wx.showToast({
-        title: '请输入举行时间',
+        title: '请输入房间名',
+        mask: true,
+      })
+      that.data.validate = false;
+    }
+    if (formData.roomTopic == null || formData.roomTopic == '') {
+      wx.showToast({
+        title: '请输入房间主题',
+        mask: true,
+      })
+      that.data.validate = false;
+    }
+    if (formData.roomType == null || formData.roomType == '') {
+      wx.showToast({
+        title: '请输入房间类型',
+        mask: true,
+      })
+      that.data.validate = false;
+    }
+    if (formData.addressDetail == null || formData.addressDetail == '') {
+      wx.showToast({
+        title: '请输入详细地址',
+        mask: true,
+      })
+      that.data.validate = false;
+    }
+    if (formData.roomVolume == null || formData.roomVolume == '') {
+      wx.showToast({
+        title: '请输入上限人数',
+        mask: true,
+      })
+      that.data.validate = false;
+    }
+    if (formData.endDate == formData.endDate && formData.endTime == formData.startTime) {
+      wx.showToast({
+        title: '请选择结束时间',
         mask: true,
       })
       that.data.validate = false;
     }
     console.log("formData.roomVolume:" + formData.roomVolume)
-    if (formData.roomVolume == null || formData.roomVolume == '') {
-      wx.showToast({
-        title: '请输入上限人數',
-        mask: true,
-      })
-      that.data.validate = false;
-    }
+    
     //校验备注
     if (formData.content != null && formData.content.length >= 10) {
       wx.showToast({
         title: '备注字数已超出',
+        mask: true,
+      })
+      that.data.validate = false;
+    }
+    if(that.data.member == -1){
+      wx.showToast({
+        title: '请选择会员',
+        mask: true,
+      })
+      that.data.validate = false;
+    }
+    if (that.data.hasPassword == true){
+      if(formData.password == null || formData.password == ''){
+        wx.showToast({
+          title: '请输入房间密码',
+          mask: true,
+        })
+        that.data.validate = false;
+      }
+    }
+    if (formData.name == null || formData.name == '') {
+      wx.showToast({
+        title: '请输入姓名',
+        mask: true,
+      })
+      that.data.validate = false;
+    }
+    if (formData.mobile == null || formData.mobile == '') {
+      wx.showToast({
+        title: '请输入电话号码',
+        mask: true,
+      })
+      that.data.validate = false;
+    }
+    if (formData.email == null || formData.email == '') {
+      wx.showToast({
+        title: '请输入邮箱',
         mask: true,
       })
       that.data.validate = false;
@@ -148,8 +234,10 @@ Page({
                 name: formData.name,
                 phone: formData.mobile,
                 email: formData.email,
-                member: 1,
-                carArray: carArray
+                member: that.data.member,
+                carArray: carArray,
+                password: password
+                
               },
               header: {
                 "token" : app.globalData.token,
@@ -217,13 +305,11 @@ Page({
     wx.hideShareMenu({
 
     })
-   
-    
   },
 
 
   onShow: function() {
-    debugger
+    
     //回调字符串转JSON对象
     if (this.data.carArray != null && typeof (this.data.carArray) == 'string'){
       var carArray = JSON.parse(this.data.carArray);
@@ -280,7 +366,28 @@ Page({
     });
   },
 
+  radio: function(e) {
+    
+    this.setData({
+       member: e.currentTarget.dataset.id
 
+    })
+    
+   
+  },
+
+  passwordRadio: function (e) {
+    if (e.currentTarget.dataset.id == 1) {
+      this.setData({
+        hasPassword: true
+      })
+    }
+    if (e.currentTarget.dataset.id == 0) {
+      this.setData({
+        hasPassword: false
+      })
+    }
+  },
 
   bindPickerChange: function(e) {
     this.setData({
