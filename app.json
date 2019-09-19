@@ -1,10 +1,14 @@
 {
   "pages": [
+    
     "pages/index/index",
-    "pages/customized/customized",
-    "pages/index/index",
-    "pages/roomlist/roomlist",
     "pages/roomdetail/roomdetail",
+    "pages/roomlist/roomlist",
+    
+    "pages/customized/customized",
+    
+    
+   
     "pages/my/my",
     
     "pages/fav-list/fav-list",

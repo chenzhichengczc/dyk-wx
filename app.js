@@ -115,7 +115,7 @@ App({
                           //授权成功之后，再调用chooseLocation选择地方
                           wx.chooseLocation({
                             success: function(res) {
-                              res.setData({
+                              obj.setData({
                                 addr: res.address,
                                 latitude: res.latitude,
                                 longitude: res.longitude

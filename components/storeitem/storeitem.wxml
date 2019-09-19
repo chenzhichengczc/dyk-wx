@@ -1,9 +1,12 @@
 <import src='../../components/star/star.wxml' />
 <template name='store'>
-  <view class='store' bindtap='storelick' data-id="{{store.id}}">
+  <view class='store' data-id="{{store.id}}">
     <image src="{{store.photo}}" mode="aspectFill"></image>
     <view class='info'>
-      <view class='name'>{{store.roomName}}</view>
+
+      <view class='name'>{{store.roomName}}
+        <image src='../../images/lock.jpg' class="lock" wx:if="{{store.password}}"></image>
+      </view>
       <view class='star_price'>
         <template is='star' data="{{count:store.star}}" />
         <text class="price">{{store.totalPrice}}/人 活动参与费</text>
@@ -14,7 +17,8 @@
       </view>
       <view class="roomTime">
         <view class="time">举行时间 : {{store.startTimeStr}}</view>
-        <button class="btn">立即了解</button>
+        <button class="btn" wx:if="{{!store.password}}"  catchtap='storelick' data-id="{{store.id}}">立即了解</button>
+        <button class="btn" wx:if="{{store.password}}" catchtap="enterPassword" data-roomId="{{store.id}}">输入密码</button>
       </view>
     </view>
   </view>

@@ -36,7 +36,7 @@
 .store .info .star_price {
   color: #111;
   font-size: 28rpx;
-  margin-bottom: 10rpx;
+  margin-bottom: 6rpx;
 }
 
 .store .info .star_price .price {
@@ -60,7 +60,7 @@
   color: #777;
   font-size: 26rpx;
   flex-wrap: nowrap;
-  margin-bottom: 10rpx;
+  margin-bottom: 6rpx;
 }
 
 .store .info .roomTime {
@@ -93,4 +93,10 @@
   font-size: 26rpx;
   line-height: 48rpx;
   background-color: rgba(69, 196, 196, 0.651)
+}
+
+.store .name .lock{
+  width: 40rpx;
+  height: 40rpx;
+  float: right;
 }

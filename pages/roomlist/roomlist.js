@@ -6,6 +6,7 @@ Page({
     selectedNav: '00',
     width: app.systemInfo.windowWidth,
     showspinner: false,
+    box: false,
     nearby: [{
         name: '附近（智能范围）',
         id: 'a01',
@@ -149,8 +150,93 @@ Page({
   storelick(event) {
     const that = this;
     const data = that.data;
-    wx.navigateTo({
-      url: '../roomdetail/roomdetail?roomId=' + event.currentTarget.dataset.id + '&addr=' + data.addr + '&latitude=' + data.latitude + '&longitude=' + data.longitude
+    that.setData({
+      clickRoom: event.currentTarget.dataset.id
     })
+    wx.navigateTo({
+      url: '../roomdetail/roomdetail?roomId=' + that.data.clickRoom + '&addr=' + data.addr + '&latitude=' + data.latitude + '&longitude=' + data.longitude
+    })
+  },
+
+  enterPassword: function(e) {
+    //e.target.dataset.roomid
+    var that = this;
+    that.setData({
+      box: true,
+      clickRoom: e.target.dataset.roomid
+    })
+
+  },
+
+  cancel: function(e) {
+    var that = this;
+    that.setData({
+      box: false
+    })
+  },
+
+  setValue: function(e) {
+    var pwd = e.detail.value;
+    this.setData({
+      pwd: pwd
+    })
+  },
+
+  confirm: function() {
+    var that = this;
+    if (that.data.clickRoom && that.data.pwd) {
+      wx.request({
+        method: "post",
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "token": app.globalData.token
+        },
+        url: app.globalData.urls + '/api/room/checkPwd',
+        data: {
+          id: that.data.clickRoom,
+          pwd: that.data.pwd
+        },
+        success: function(res) {
+          switch (res.data.data) {
+            case 0:
+              wx.showToast({
+                title: '系统错误,稍后再试!',
+                duration: 3000,
+                icon: "none"
+              })
+              break;
+            case 2:
+              wx.showToast({
+                title: '密码错误,进入失败!',
+                duration: 3000,
+                icon: "none"
+              })
+              break;
+            case 1:
+              wx.navigateTo({
+                url: '../roomdetail/roomdetail?roomId=' + that.data.clickRoom + '&addr=' + that.data.addr + '&latitude=' + that.data.latitude + '&longitude=' + that.data.longitude
+              })
+              that.setData({
+                clickRoom: "",
+                box: false
+              })
+              break;
+          }
+        }
+      })
+    } else if (!that.data.pwd) {
+      wx.showToast({
+        title: '请输入密码!',
+        duration: 3000,
+        icon: "none"
+      })
+    } else {
+      wx.showToast({
+        title: '系统错误，稍后再试!',
+        duration: 3000,
+        icon: "none"
+      })
+    }
+
   }
 })

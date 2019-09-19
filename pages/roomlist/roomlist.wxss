@@ -1,96 +1,185 @@
 @import '../../components/mystar/mystar.wxss';
 @import '../../components/storeitem/storeitem.wxss';
-page{
-    background-color: #f0f0f0;
+
+page {
+  background-color: #f0f0f0;
 }
 
-.search{
-    background-color: #fff;
-    margin: 20rpx 40rpx;
-    border-radius: 70rpx;
-    height: 70rpx;
-    line-height: 70rpx;
-    display: flex;
-    flex-wrap: nowrap;
-    padding: 0 30rpx;
-    vertical-align: middle;
-    align-items: center;
+.search {
+  background-color: #fff;
+  margin: 20rpx 40rpx;
+  border-radius: 70rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  padding: 0 30rpx;
+  vertical-align: middle;
+  align-items: center;
 }
 
-.search icon{
-margin-right: 10rpx;
-height: 18px;
-}
-.search input{
-    flex: 1;
-    vertical-align: middle;
-    height: 70rpx;
-      display: inline-block;
-      font-size: 26rpx;
+.search icon {
+  margin-right: 10rpx;
+  height: 18px;
 }
 
-.navbtns{
-    display: flex;
-    height: 80rpx;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    align-items: center;
-    background-color: #ffffff;
+.search input {
+  flex: 1;
+  vertical-align: middle;
+  height: 70rpx;
+  display: inline-block;
+  font-size: 26rpx;
 }
 
-.navbtns .navitem{
-    flex: 1;
-    text-align: center;
-    color: #777777;
-    font-size: 26rpx;
-    height: 80rpx;
-    line-height: 80rpx;
-}
-.navbtns .navitem image{
-    display: inline-block;
-    width: 26rpx;
-    height: 26rpx;
-    margin-left: 6rpx;
-    vertical-align: middle;
+.navbtns {
+  display: flex;
+  height: 80rpx;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  background-color: #fff;
 }
 
-.navbtns .line{
-width: 3rpx;
-background-color: #aaaaaa;
-height: 45rpx;
-flex-shrink: 0;
+.navbtns .navitem {
+  flex: 1;
+  text-align: center;
+  color: #777;
+  font-size: 26rpx;
+  height: 80rpx;
+  line-height: 80rpx;
 }
 
-.wrap{
-    position: relative;
+.navbtns .navitem image {
+  display: inline-block;
+  width: 26rpx;
+  height: 26rpx;
+  margin-left: 6rpx;
+  vertical-align: middle;
 }
 
-.wrap .spinner{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, .6);
-    z-index: 1;
-    top: 0;
-    left: 0;
+.navbtns .line {
+  width: 3rpx;
+  background-color: #aaa;
+  height: 45rpx;
+  flex-shrink: 0;
 }
 
-.wrap .spinner .items{
-    background-color: #fff;
-    padding-left: 20rpx;
+.wrap {
+  position: relative;
 }
 
-.wrap .spinner .items .item{
-   padding-left: 25rpx;
-border-bottom: 1rpx solid #777777;
-height: 90rpx;
-line-height: 90rpx;
-color: #333;
-font-size: 30rpx;
-
+.wrap .spinner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+  top: 0;
+  left: 0;
 }
 
+.wrap .spinner .items {
+  background-color: #fff;
+  padding-left: 20rpx;
+}
 
-.scroller{
-    margin-top: -5rpx;
+.wrap .spinner .items .item {
+  padding-left: 25rpx;
+  border-bottom: 1rpx solid #777;
+  height: 90rpx;
+  line-height: 90rpx;
+  color: #333;
+  font-size: 30rpx;
+}
+
+.scroller {
+  margin-top: -5rpx;
+}
+
+.toast-box {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  font-size: 26rpx;
+}
+
+.toastbg {
+  opacity: 0.2;
+  background-color: black;
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.showToast {
+  position: absolute;
+  opacity: 1;
+  width: 70%;
+  margin-left: 15%;
+  margin-top: 40%;
+}
+
+.toast-title {
+  padding-left: 5%;
+  background-color: #2196f3;
+  color: white;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  border-top-right-radius: 16rpx;
+  border-top-left-radius: 16rpx;
+}
+
+.toast-main {
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  background-color: white;
+  text-align: center;
+}
+
+.toast-input {
+  margin-left: 5%;
+  margin-right: 5%;
+  border: 1px solid #ddd;
+  padding-left: 2vh;
+  padding-right: 2vh;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+
+.toast-button {
+  display: flex;
+}
+
+.button1 {
+  width: 50%;
+}
+
+.button2 {
+  width: 50%;
+}
+
+.button1 button {
+  width: 100%;
+  background-color: white;
+  color: red;
+  border-radius: 0px;
+  border-bottom-left-radius: 16rpx;
+  font-size: 34rpx;
+}
+
+.button2 button {
+  width: 100%;
+  background-color: white;
+  color: black;
+  border-radius: 0px;
+  border-bottom-right-radius: 16rpx;
+  font-size: 34rpx;
+}
+
+.picker {
+  padding-top: 1vh;
+  padding-bottom: 1vh;
 }

@@ -1,5 +1,5 @@
 <import src='../../components/star/star.wxml' />
-<import src='../../components/storeitem/storeitem.wxml'/>
+<import src='../../components/storeitem/storeitem.wxml' />
 <view class='container'>
   <view class='search'>
     <icon type="search" color="#4c4c4c" size="18"></icon>
@@ -24,10 +24,35 @@
   <view class='wrap'>
     <scroll-view class='scroller' style="width:{{width}}px;" scroll-y="true" lower-threshold="800" bindscrolltolower="loadmore">
       <block wx:for='{{roomlist}}' wx:for-item='store' wx:key='*this'>
-      <template is="store" data="{{store,km}}"/>
-      
+        <template is="store" data="{{store,km}}" />
       </block>
     </scroll-view>
+
+    <view class='toast-box' hidden='{{!box}}'>
+        <view class='toastbg'></view>
+        <view class='showToast'>
+            <view class='toast-title'>
+                <text>输入密码</text>
+            </view>
+            <view class='toast-main'>
+                <view class='toast-input'>
+                    <input placeholder='请输入房间密码' bindinput='setValue' data-name='pwd'></input>
+                </view>
+            </view>
+            <view class='toast-button'>
+                <view class='button1'>
+                    <button catchtap='cancel'>取消</button>
+                </view>
+                <view class='button2'>
+                    <button catchtap='confirm' data-roomId="{{store.id}}">确定</button>
+                </view>
+            </view>
+        </view>
+    </view>
+
+
+
+
     <view class='spinner' wx:if='{{showspinner}}'>
       <view class='items'>
         <block wx:for="{{spinners}}" wx:for-item='item' wx:key="item.id">

@@ -330,12 +330,12 @@ page {
     margin: 8rpx 0;
     background-color: #111111;
     border-radius: 6rpx;
-display: inline-block;
-margin-right: 4rpx;
+    display: inline-block;
+    margin-right: 4rpx;
 }
 
 .buy{
-position: fixed;
+/* position: fixed; */
 bottom: 0;
 left: 0;
 background-color: #fff;
