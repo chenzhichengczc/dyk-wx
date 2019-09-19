@@ -30,8 +30,37 @@ const orderRoomId = oId => {
   return Math.floor(Math.random() * 100000000);
 }
 
+//电话正则-提交时
+function judgePhone(phone) {
+  var regex = /^1[3456789]\d{9}$/;
+  return regex.test(phone);
+}
+
+//电话正则-值改变时
+function judgePhoneRealtime(phone) {
+  var regex = /^1[3456789]\d{9}$/;
+  return regex.test(phone);
+}
+
+//qq正则-提交时
+function judgeQQ(qq){
+  var regex = /^[1-9][0-9]{4,10}$/;
+  return regex.test(qq);
+}
+
+//qq正则-值改变时
+function judgeQQRealtime(qq) {
+  var regex = /^[1-9][0-9]{4,10}$/;
+  return regex.test(qq);
+}
+
 module.exports = {
   formatTime: formatTime,
   randomRoomId: randomRoomId,
-  orderRoomId: orderRoomId
+  orderRoomId: orderRoomId,
+  judgePhone: judgePhone,
+  judgeQQ: judgeQQ,
 }
+
+
+
