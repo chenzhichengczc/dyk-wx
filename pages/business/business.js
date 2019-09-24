@@ -269,6 +269,34 @@ Page({
         success: function (e) {
           console.log(e);
           console.log("成功");
+          if(e.data.code==500){
+            wx.showModal({  
+              content: '您的信息已经记录，请您静候佳音！',
+              showCancel: false,
+              success(res) {
+                if(res.confirm){
+                  wx.navigateBack({
+                    delta: 1000,
+                  })
+                }
+              }
+            });
+          }else{
+            wx.showModal({
+              content: '提交成功，我们会在24小时内联系您',
+              showCancel: false,
+              success(res) {
+                if (res.confirm) {
+                  wx.navigateBack({
+                    delta: 1000,
+                  })
+                }
+              }
+            });
+            wx.navigateBack({
+              delta: 1000,
+            })
+          }
         },
         fail: function (e){
           console.log(e);

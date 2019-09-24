@@ -27,12 +27,13 @@ App({
 
     wx.login({
       success(res) {
+        console.log(res);
         if (res.code) {
           wx.request({
             url: that.globalData.urls + '/user/getUserInfo',
             data: {
               appid: "wxfd53041bf21b05e9",
-              secret: "f24ff83f42e3b50bdf25b90f683cf140",
+              secret: "30f4bab9dfc078d88756045cfc535cb1",
               js_code: res.code,
               grantType: 'authorization_code',
 
