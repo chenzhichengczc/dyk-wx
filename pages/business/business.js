@@ -1,4 +1,4 @@
-// pages/index/join.js
+// pages/index/business.js
 var util = require("../../utils/util.js");
 const app = getApp();
 Page({
@@ -7,12 +7,12 @@ Page({
    */
   data: {
     color: '#00CACA',
-    name: '',
-    phone: '',
-    qq: '',
-    business: '',
-    addr: '请选择店铺地址',
-    message: '',
+    business_name: '',
+    business_phone: '',
+    business_qq: '',
+    business_store: '',
+    business_addr: '请选择店铺地址',
+    business_message: '',
     latitude: '',
     longitude: '',
   },
@@ -31,11 +31,11 @@ Page({
         //   address = address.substring(3);
         // }
         that.setData({
-          addr: res.address,
+          business_addr: res.address,
           latitude: res.latitude,
           longitude: res.longitude,
         });
-        console.log(that.data.addr);
+        console.log(that.data.business_addr);
         console.log(that.data.latitude);
         console.log(that.data.longitude);
         console.log("222");
@@ -74,11 +74,11 @@ Page({
                               // var address = res.address.substring(3);
                               // console.log(address);
                               that.setData({
-                                addr: res.address,
+                                business_addr: res.address,
                                 latitude: res.latitude,
                                 longitude: res.longitude,
                               });
-                              console.log(that.data.addr);
+                              console.log(that.data.business_addr);
                               console.log(that.data.latitude);
                               console.log(that.data.longitude);
                               console.log("888");
@@ -120,30 +120,30 @@ Page({
     switch(e.currentTarget.id){
       case "input_0":
         this.setData({
-          name: e.detail.value,
+          business_name: e.detail.value,
         });
         break;
       case "input_1":
-        // console.log(util.judgePhone(e.detail.value));
+        // console.log(util.judgebusiness_phone(e.detail.value));
         // var value = e.detail.value.replace(/\D/g,'');
         // console.log(value);
         this.setData({
-          phone: e.detail.value,
+          business_phone: e.detail.value,
         });
         break;
       case "input_2":
         this.setData({
-          qq: e.detail.value,
+          business_qq: e.detail.value,
         });
         break;
       case "input_3":
         this.setData({
-          business: e.detail.value,
+          business_store: e.detail.value,
         });
         break;
       case "textarea_0":
         this.setData({
-          message: e.detail.value,
+          business_message: e.detail.value,
         });
         break;
     }
@@ -157,28 +157,28 @@ Page({
   //   //判断4个输入框中的哪一个
   //   switch(e.currentTarget.id){
   //     case "input_0":
-  //       if(that.data.name == ""){
+  //       if(that.data.business_name == ""){
   //         that.setData({
   //           pla_0: "",
   //         });
   //       }
   //       break;
   //     case "input_1":
-  //       if (that.data.phone == "") {
+  //       if (that.data.business_phone == "") {
   //         that.setData({
   //           pla_1: "",
   //         });
   //       }
   //       break;
   //     case "input_2":
-  //       if (that.data.qq == "") {
+  //       if (that.data.business_qq == "") {
   //         that.setData({
   //           pla_2: "",
   //         });
   //       }
   //       break;
   //     case "textarea_0":
-  //       if (that.data.message == "") {
+  //       if (that.data.business_message == "") {
   //         that.setData({
   //           tex: "",
   //         });
@@ -194,7 +194,7 @@ Page({
   //   var that = this;
   //   switch(e.currentTarget.id){
   //     case "input_0":
-  //       if(that.data.name == ""){
+  //       if(that.data.business_name == ""){
   //         that.setData({
   //           pla_0: "请输入姓名",
   //         });
@@ -205,21 +205,21 @@ Page({
   //提交表单
   submit: function (e){
     var that = this;
-    if(this.data.name == ""){
+    if(this.data.business_name == ""){
       wx.showToast({
         title: '请输入姓名',
         icon: 'none',
         duration: 1000
       })
-    } else if (this.data.phone == "") {
+    } else if (this.data.business_phone == "") {
       wx.showToast({
         title: '请输入电话',
         icon: 'none',
         duration: 1000
       })
-    } else if (this.data.qq == "") {
+    } else if (this.data.business_qq == "") {
       wx.showToast({
-        title: '请输入QQ',
+        title: '请输入qq',
         icon: 'none',
         duration: 1000
       })
@@ -229,21 +229,21 @@ Page({
         icon: 'none',
         duration: 1000
       })
-    } else if (this.data.addr == "请选择店铺地址") {
+    } else if (this.data.business_addr == "请选择店铺地址") {
       wx.showToast({
         title: '请选择店铺地址',
         icon: 'none',
         duration: 1000
       })
-    } else if (!(util.judgePhone(this.data.phone))){
+    } else if (!(util.judgePhone(this.data.business_phone))){
       wx.showToast({
         title: '电话格式错误',
         icon: 'none',
         duration: 1000
       })
-    } else if (!(util.judgeQQ(this.data.qq))){
+    } else if (!(util.judgeQQ(this.data.business_qq))){
       wx.showToast({
-        title: 'QQ格式错误',
+        title: 'qq格式错误',
         icon: 'none',
         duration: 1000
       })
@@ -251,12 +251,12 @@ Page({
       wx.request({
         url: app.globalData.urls + '/api/join/insert',
         data: {
-          name: that.data.name,
-          phone: that.data.phone,
-          qq: that.data.qq,
-          business: that.data.business,
-          addr: that.data.addr,
-          message: that.data.message,
+          business_name: that.data.business_name,
+          business_phone: that.data.business_phone,
+          business_qq: that.data.business_qq,
+          business_store: that.data.business_store,
+          business_addr: that.data.business_addr,
+          business_message: that.data.business_message,
           latitude: that.data.latitude,
           longitude: that.data.longitude,
         },

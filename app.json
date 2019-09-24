@@ -2,9 +2,9 @@
   "pages": [
     
     "pages/index/index",
-    "pages/join/join",
-    "pages/roomdetail/roomdetail",
     "pages/roomlist/roomlist",
+    "pages/business/business",
+    "pages/roomdetail/roomdetail",
     "pages/my/my",
     "pages/customized/customized",
     "pages/fav-list/fav-list",

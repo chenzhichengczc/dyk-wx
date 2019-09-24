@@ -32,7 +32,7 @@ App({
             url: that.globalData.urls + '/user/getUserInfo',
             data: {
               appid: "wxfd945e2b4a767dc3",
-              secret: "f24ff83f42e3b50bdf25b90f683cf140",
+              secret: "85a7570f2625d55bc2c6e9016ad2c1d7",
               js_code: res.code,
               grantType: 'authorization_code',
 
