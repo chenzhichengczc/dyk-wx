@@ -41,4 +41,10 @@
       <button open-type="getUserInfo" bindgetuserinfo="userlogin">允许</button>
     </view>
   </view>
+  <view class="container">
+    <image wx:if="{{picture}}" src="{{shareImage}}" class="share-image"></image>
+    <easy-canva painting="{{painting}}" class="easy-canva" bind:getImage="eventGetImage"/>
+    <button bind:tap="eventDraw" type='primary' >绘制</button>
+    <button bind:tap="eventSave">保存到本地</button>
+</view>
 </scroll-view>
