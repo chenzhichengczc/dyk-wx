@@ -1,13 +1,13 @@
 {
   "pages": [
+    
     "pages/index/index",
-    "pages/customized/customized",
-    
-    
     "pages/roomlist/roomlist",
+    "pages/join/join",
+    
     "pages/roomdetail/roomdetail",
     "pages/my/my",
-    
+    "pages/customized/customized",
     "pages/fav-list/fav-list",
     "pages/menu/menu",
     "pages/logs/logs"
@@ -17,6 +17,11 @@
     "navigationBarBackgroundColor": "#181818",
     "navigationBarTitleText": "大约客",
     "navigationBarTextStyle": "white"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置展示"
+    }
   },
   "tabBar": {
     "color": "#838383",

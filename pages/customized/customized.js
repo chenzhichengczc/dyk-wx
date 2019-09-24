@@ -242,8 +242,8 @@ Page({
               header: {
                 "token" : app.globalData.token,
                 'content-type': 'application/x-www-form-urlencoded' // 默认值
-              },
-              method: "post",
+              }, 
+              method: "post", 
               success: function(e) {
                 // 生成预付款单
                 wx.requestPayment({
