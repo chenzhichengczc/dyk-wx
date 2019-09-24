@@ -37,10 +37,10 @@ function judgePhone(phone) {
 }
 
 //电话正则-值改变时
-function judgePhoneRealtime(phone) {
-  var regex = /^1[3456789]\d{9}$/;
-  return regex.test(phone);
-}
+// function judgePhoneRealtime(phone) {
+//   var regex = /^1[3456789]\d{9}$/;
+//   return regex.test(phone);
+// }
 
 //qq正则-提交时
 function judgeQQ(qq){
@@ -49,10 +49,10 @@ function judgeQQ(qq){
 }
 
 //qq正则-值改变时
-function judgeQQRealtime(qq) {
-  var regex = /^[1-9][0-9]{4,10}$/;
-  return regex.test(qq);
-}
+// function judgeQQRealtime(qq) {
+//   var regex = /^[1-9][0-9]{4,10}$/;
+//   return regex.test(qq);
+// }
 
 module.exports = {
   formatTime: formatTime,

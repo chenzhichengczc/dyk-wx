@@ -100,7 +100,7 @@ Page({
         break;
       case "05":
         wx.navigateTo({
-          url: '/pages/join/join',
+          url: '/pages/business/business',
         });
         break;
     }
