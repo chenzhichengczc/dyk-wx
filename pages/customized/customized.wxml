@@ -114,7 +114,7 @@
         <text class="bz_info">会员</text>
       </view>
       <view class='info_item'>
-        <radio-group class="radio-group" bindchange="radioChange">
+        <radio-group class="radio-group" bindchange="radioChange" >
           <label class="radio" wx:for="{{k7}}" wx:key="index">
             <radio value="{{item.arr_guige02}}" bindtap='radio' data-id="{{item.guige_key02}}" checked="{{item.checked}}" />{{item.arr_guige02}}
           </label>
@@ -150,6 +150,25 @@
         </view>
       </view>
 
+
+
+    </view>
+
+    <view class="dingzhi_base_info">
+      <view class="info_item bottom_line">
+        <text class="p_info">密码锁栏</text>
+      </view>
+      <view class='info_item'>
+        <radio-group class="radio-group" >
+          <label class="radio" wx:for="{{p7}}" wx:key="index">
+            <radio value="{{item.arr_select}}" bindtap='passwordRadio' data-id="{{item.select_key}}" checked="{{item.checked}}" />{{item.arr_select}}
+          </label>
+        </radio-group>
+      </view>
+      <view class="info_item bottom_line" wx:if="{{hasPassword}}">
+        <text class="lt">房间密码</text>
+        <input name="password" id="password" placeholder="请输入房间密码" />
+      </view>
     </view>
 
     <!--联系人信息-->

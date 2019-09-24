@@ -1,1 +1,5 @@
-{}
+{
+  "usingComponents": {
+    "easy-canva": "/components/easy-canva/easy-canva"
+  }
+}
