@@ -31,8 +31,8 @@ App({
           wx.request({
             url: that.globalData.urls + '/user/getUserInfo',
             data: {
-              appid: "wxfd945e2b4a767dc3",
-              secret: "0d921f83d3a88312703d8771709fb7e1",
+              appid: "wxdea09027e1bab606",
+              secret: "171f87674da2ac6fd752e0fdd707f3ed",
               js_code: res.code,
               grantType: 'authorization_code',
 
