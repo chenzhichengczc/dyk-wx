@@ -91,24 +91,35 @@ Page({
 
     var that = this;
 
-    wx.request({
-      url: app.globalData.urls + '/api/room/list',
-      success: function(res) {
-        if (res.data.code == 0) {
-          that.setData({
-            roomlist: res.data.data
-          })
-        }
-      }
-    })
+    //进来后先进行地址选定，然后把当前位置的经纬度拿到后传入后台计算
+    app.getAddress(that);
+
 
 
 
   },
 
-  onReady: function() {
+  onShow: function() {
     var that = this;
-    app.getAddress(that);
+
+    if (that.data.addr) {
+      wx.request({
+        url: app.globalData.urls + '/api/room/list',
+        data: {
+          latitude: that.data.latitude,
+          longitude : that.data.longitude
+        },
+        success: function(res) {
+          console.log(res);
+          if (res.data.code == 0) {
+
+            that.setData({
+              roomlist: res.data.data
+            })
+          }
+        }
+      })
+    }
   },
 
   navitation(event) {
