@@ -27,6 +27,7 @@ App({
 
     wx.login({
       success(res) {
+        console.log(res);
         if (res.code) {
           wx.request({
             url: that.globalData.urls + '/user/getUserInfo',
@@ -75,7 +76,7 @@ App({
       success: function(data) {
         if (data.paths[0] && data.paths[0].distance) {
           obj.setData({
-            km: (data.paths[0].distance / 1000).toFixed(1)
+            // km: (data.paths[0].distance / 1000).toFixed(1)
           });
         }
       }

@@ -1,163 +1,213 @@
 const app = getApp();
+const util = require("../../utils/util.js")
 
 Page({
 
   data: {
-    width: app.systemInfo.windowWidth,
+    painting: {},
+    shareImage: '',
+    picture: false,
+    width: app.systemInfo.screenWidth,
+    height: app.systemInfo.screenHeight,
     service: [
       '加入我们', '一起玩游戏'
     ],
     selled: 20,
     storeName: '22.22咖啡店',
-    // describe: '1、迎宾区\n赠送签到背景10桁架搭建（规格：3*5m以内，仅限室内使用，室外建议搭建2.0桁架\n签到背景主题色系帷幔搭建，帷幔拉幔设计（规格：3*5\n仿真花艺排插 规格：（0.4*0.5m\n签到桌主题色系帷幔装饰\n签到桌蓬蓬纱装饰\n桌面水晶瓶插仿真花艺一个（规格：花艺直径40cm)\n迎宾签到薄一套\n签到笔两支\n喜火柴20包\n2、主舞台\n主舞台背景室内升降桁架搭建 （规格：3＊6以内）\n主背景主题色系帷幔打底，拉幔设计\n铁艺拱门设计 （规格：1.8*2.6m）\n仿真花艺排插 （规格：40cm直径）\n蝴蝶道具装饰\n3、通道区\n白色一次性PVC地毯 （规格：2.8*15m以内）\n主题色系地毯（规格：1.8*12m）\n水晶瓶搭配发散型仿真花艺8组（规格：方柱30*30*40cm，仿真花艺直径40cm）\n仿真花艺拱门设计（规格：仿真花艺直径40cm）\n4、道具及设备\n双轮泡泡机1台\n流光溢彩香槟塔一套\n5、其他\n新娘手捧花、手腕花、胸花一套（基本款）\n婚车扎花一套（基本款）\n新娘免费区婚纱一套\n新娘免费敬酒服一套\n伴娘服3套以内免费\n小花童服饰免费',
     goods: {
-      // id: '001',
-      // name: '千成婚礼三金刚2999',
-      // describe: '仅售2999元，价值3740元千成指定主持人、摄像师、化妆师！九年品质，匠心巨惠！',
-      // photo: [
-      //   'http://p1.meituan.net/dpdeal/8d609a9ea0261af8f448341928a212b5276750.jpg%40450w_280h_1e_1c_1l%7Cwatermark%3D1%26%26r%3D1%26p%3D9%26x%3D2%26y%3D2%26relative%3D1%26o%3D20',
-      //   'http://p0.meituan.net/dpdeal/8d1e7ea4dd6c02e115580f3624bd0155868651.jpg%40450w_280h_1e_1c_1l%7Cwatermark%3D1%26%26r%3D1%26p%3D9%26x%3D2%26y%3D2%26relative%3D1%26o%3D20',
-      //   'http://p0.meituan.net/dpdeal/65f39aedc8519c05b07768fd09ef8dbb992006.jpg%40450w_280h_1e_1c_1l%7Cwatermark%3D1%26%26r%3D1%26p%3D9%26x%3D2%26y%3D2%26relative%3D1%26o%3D20',
-      //   'http://p0.meituan.net/dpdeal/2404b5aaf0a7138340a59ce88a2f68a2918239.jpg%40450w_280h_1e_1c_1l%7Cwatermark%3D1%26%26r%3D1%26p%3D9%26x%3D2%26y%3D2%26relative%3D1%26o%3D20',
-      //   'http://p1.meituan.net/dpdeal/02dfd8330865f388c2786583058dd715532873.jpg%40450w_280h_1e_1c_1l%7Cwatermark%3D1%26%26r%3D1%26p%3D9%26x%3D2%26y%3D2%26relative%3D1%26o%3D20'
-      // ],
-      // service: [
-      //   '随时退', '过期退'
-      // ],
-      // selled: 20,
-      // store: {
-      //   id: '001',
-      //   name: '成都千成婚礼（天府新区华阳店）',
-      //   star: 4.6,
-      //   starcount: 4,
-      //   buztype: '婚庆公司',
-      //   address: '天府新区益州大道588号益州国际写字楼10楼',
-      //   phone: '13438138861',
-      //   km: '14.1km',
-      // },
-      // group: {
-      //   goods: [{
-      //       id: '01',
-      //       name: '千成婚礼三金刚套餐',
-      //       count: '1套',
-      //       value: '3500',
-      //     },
-      //     {
-      //       id: '02',
-      //       name: '千成婚礼摄影',
-      //       count: '1套',
-      //       value: '1500',
-      //     }
-      //   ],
-      //   oldValue: '5000',
-      //   grounpValue: '3500',
-      //   describe: '1、迎宾区\n赠送签到背景10桁架搭建（规格：3*5m以内，仅限室内使用，室外建议搭建2.0桁架\n签到背景主题色系帷幔搭建，帷幔拉幔设计（规格：3*5\n仿真花艺排插 规格：（0.4*0.5m\n签到桌主题色系帷幔装饰\n签到桌蓬蓬纱装饰\n桌面水晶瓶插仿真花艺一个（规格：花艺直径40cm)\n迎宾签到薄一套\n签到笔两支\n喜火柴20包\n2、主舞台\n主舞台背景室内升降桁架搭建 （规格：3＊6以内）\n主背景主题色系帷幔打底，拉幔设计\n铁艺拱门设计 （规格：1.8*2.6m）\n仿真花艺排插 （规格：40cm直径）\n蝴蝶道具装饰\n3、通道区\n白色一次性PVC地毯 （规格：2.8*15m以内）\n主题色系地毯（规格：1.8*12m）\n水晶瓶搭配发散型仿真花艺8组（规格：方柱30*30*40cm，仿真花艺直径40cm）\n仿真花艺拱门设计（规格：仿真花艺直径40cm）\n4、道具及设备\n双轮泡泡机1台\n流光溢彩香槟塔一套\n5、其他\n新娘手捧花、手腕花、胸花一套（基本款）\n婚车扎花一套（基本款）\n新娘免费区婚纱一套\n新娘免费敬酒服一套\n伴娘服3套以内免费\n小花童服饰免费',
-      // },
-      guide: [
-        //{
-        //   id: '01',
-        //   name: '联系方式',
-        //   info: [
-        //     '活动了解联系', '朱先生  '
-        //   ],
-        // },
-        {
-          id: '02',
+      guide: [{
+          id: '01',
           name: '不可抗力',
           info: [
             '活动因不可抗力因素造成活动，将暂停活动举行'
           ],
         },
         {
-          id: '03',
+          id: '02',
           name: '活动举行时间 - （超过时间则停止参与）',
           info: [
             '8:00-20:00',
           ],
         },
         {
-          id: '04',
+          id: '03',
           name: '预约信息',
           info: [
             '活动当天预约，均为明天参与活动', '详情请留意个人信息的订单详情!'
           ],
         },
-        // {
-        //   id: '05',
-        //   name: '活动提醒',
-        //   info: [
-        //     '每张团购券只适用于1对新人使用', '每次消费您最多可用1张团购券', '需您当日一次性体验完毕所有项目', '每天最多接待1张团购券，建议您到店前先和商家确认', '不可指定婚礼摄影、摄像、跟妆、司仪等人员', '团购套餐内包含的服务项目不可随意更改，如需增加其他服务项目，则须根据商户标准报价付费', '可与套餐及定制型婚礼优惠同享，但不再与其他优惠同享'
-        //   ],
-        // },
         {
-          id: '06',
+          id: '04',
           name: '温馨提示',
           info: [
-            '客户在参与活动前须确认好房间信息，以免给您带来不必要的损失。', '活动当中请遵循我们平台提供的活动方案', '为了保障您的安全, 请在规定地址活动！' , '活动结束后 , 请在订单上反馈本次活动情况!'
+            '客户在参与活动前须确认好房间信息，以免给您带来不必要的损失。', '活动当中请遵循我们平台提供的活动方案', '为了保障您的安全, 请在规定地址活动！', '活动结束后 , 请在订单上反馈本次活动情况!'
           ],
         },
         {
-          id: '07',
+          id: '05',
           name: '优惠规则',
           info: [
-            '活动推广阶段 , 均免费支付房间定金' , '推广朋友圈可以得到礼物哦!!'
+            '活动推广阶段 , 均免费支付房间定金', '推广朋友圈可以得到礼物哦!!'
           ],
         },
       ],
-      // comments: [{
-      //     id: '01',
-      //     comment: '之前去吃过仁和春天酒店的餐饮， 觉得菜品还不错，把这家酒店介绍给了朋友，终于上月完成了她的婚礼， 现场布置的很漂亮，宴会厅很高，没有柱子，应该是很不错的厅。餐标2888起，中高端的婚宴酒店，服务和品质不错。交通方便，就在2环路边上。酒店比较新，应该是最近几年开业的，整体好评',
-      //     star: 5,
-      //     name: 'llyjessica',
-      //     cover: 'http://photos.breadtrip.com/avatar_1c_24_a9be5921a59d1743f019c14e5999f51c.jpg-avatar.l',
-      //     photo: [
-      //       'http://p0.meituan.net/wedding/d12fbff776107a7517a943dbd7ee9983161817.jpg%40249w_249h_0e_1l%7Cwatermark%3D0',
-      //       'http://p1.meituan.net/wedding/ab53686fab6d5bb6c7071cebdbf3719a216669.jpg%40249w_249h_0e_1l%7Cwatermark%3D0',
-      //       'http://p1.meituan.net/wedding/8b97535a84f2a65992b0888010261409157060.jpg%40249w_249h_0e_1l%7Cwatermark%3D0'
-      //     ]
-      //   },
-      //   {
-      //     id: '02',
-      //     comment: '上星期去参加了朋友的婚宴，第一次来人和春天酒店，地理位置很好在二环高架旁，酒店是很漂亮，提前进去看了布景，灯光打下来也很美，真的是很精致的婚礼💒。餐也不错，里面的服务态度就不说了很不错。好像是20多桌左右吧！人数还是不能容纳太多，觉得还挺不错的！推荐以后的婚礼和宴席都可以来。',
-      //     star: 4.4,
-      //     name: '挽挽是碗碗',
-      //     cover: 'http://photos.breadtrip.com/avatar_17_66_dbd2fafd1ba92b26a9c5b5498527f7b7b074323f.jpg-avatar.l',
-      //     photo: [
-      //       'http://qcloud.dpfile.com/pc/ZkJc7sTnfN6TPfh3uZRKk_JAboF2uokfXw_zGxiA84KxD7i2kM-BC_cjA8iaaz3Z.jpg',
-      //       'http://qcloud.dpfile.com/pc/toSx1AwA9IzWdiWibOpjMYuStN8-efxUhDYTyE3dzdYh8ta1TbMUc98hxtu-DcaE.jpg',
-      //       'http://qcloud.dpfile.com/pc/bjVgsQ-36JVg5I_l5zg4nzbYRgzz4lw5qd8ladcKZiuNI2YwUBqhZfAFjKB6H7OK.jpg',
-      //       'http://qcloud.dpfile.com/pc/toSx1AwA9IzWdiWibOpjMYuStN8-efxUhDYTyE3dzdYh8ta1TbMUc98hxtu-DcaE.jpg'
-      //     ]
-      //   },
-      //   {
-      //     id: '03',
-      //     comment: '婚庆是父母帮偶们挑选的（偶婚前一直不在上海，老公公司很忙 加上大老爷们一个，也知道要看什么……最重要他那品味，不敢相信！品味最好的一次是找到了偶）记得第一次妈妈和偶说去看婚庆了，看了一家离家有点距离的婚庆，每次去都要做半小时的车，我就直接说不要定了，换一家，太远！妈妈说婚博会上 他们家人最多，接待的小...',
-      //     star: 3.2,
-      //     name: 'vwvent',
-      //     cover: 'http://photos.breadtrip.com/avatar_8a_9a_fa4953d7fa5d031e5ae27a3977f30ddab7242482.jpg-avatar.l',
-      //     photo: [
-      //       'http://qcloud.dpfile.com/pc/lBypaosyaHwArZJJfoDicae2Nhdu70WB3htMUHpfT7XFZDTpY1jTPBtBiShMGWuC.jpg',
-      //       'http://qcloud.dpfile.com/pc/dLY2-bno1t0KVqTLTi-IYHGU966Lb4v2BXMhH1UvE9ymIBGsFPwHnH7n9H0hfTx-.jpg',
-      //       'http://qcloud.dpfile.com/pc/m88QI7_3DnpXNzeaVljSTikbJUnStd-qhP_6RpwQyFGBqt4zHfH7ZxAF-vPQPR3g.jpg'
-      //     ]
-      //   },
-      //   {
-      //     id: '04',
-      //     comment: '第一次去婚博会酒店还没选好，所以就留了个号码，选完酒店后就确认来喜上了。其实本人太懒了不高兴挑来挑去，看看喜上也算婚庆品牌，而且工作人员小冷又态度不错所以其他也不高兴看了。第一次去浦东接待定是anna，首先她带我了解了个大致流程和情况，这让云里雾里的我稍微安了点心啊……其次是确认套餐，所有的都可以在套餐里加减。我觉得满方便的，有任何问题都可以沟通，不过不要以为来一次就可以了，我来来回回也有4次吧！还有婚庆配套的化妆是宇涵造型的妹子，比我婚纱照化的好多了，这里表扬下。结婚当天我什么都不用考虑，会有工作人员提前进场，安排好一切。总之还是很满意的。感谢所有的工作人员。',
-      //     star: 4.8,
-      //     name: '程萍',
-      //     cover: 'http://photos.breadtrip.com/avatar_7e_99_8666810bacfb8677ef21065623b95139f8e43729.jpg-avatar.l',
-      //     photo: [
-      //       'http://qcloud.dpfile.com/pc/Fz4Td_w4bgVvSiWpda3UOE40huPPApbPqrpIMA4D0lsGKtZVVy10_IHGzJTdp2vy.jpg',
-      //       'http://qcloud.dpfile.com/pc/4NcbDPrK74X1TWTV0qWQYgweas83AXNFmF229Z4CJ4j2FNh46a0BHyi7kZsZ1SM1.jpg',
-      //       'http://qcloud.dpfile.com/pc/vh1QKGNYkTnN9QkxU5KRzN-5-e17r35zD8vsfxxOmBrntScy6jnu4wG_uQx59kh-.jpg'
-      //     ]
-      //   },
-
-      // ]
     }
   },
   //广告栏
+
+  // eventDraw: function() {
+  //   wx.showLoading({
+  //     title: '分享海报制作中',
+  //     mask: true
+  //   })
+  //   this.setData({
+  //     picture: true,
+  //     painting: {
+  //       width: 375,
+  //       height: 555,
+  //       clear: true,
+  //       views: [{
+  //         type: 'image',
+  //         url: '/images/logo.png',
+  //         top: 0,
+  //         left: 0,
+  //         width: 375,
+  //         height: 555
+  //       },
+  //       {
+  //         type: 'roundrect',
+  //         background: "#fff",
+  //         top: 57.5,
+  //         left: 88,
+  //         width: 280,
+  //         height: 25,
+  //         radius: 10,
+  //         shadowBlur: 10,
+  //         shadowColor: "rgba(255,255,255,.5)"
+  //       },
+  //       {
+  //         type: 'image',
+  //         url: 'https://wx.qlogo.cn/mmhead/Q3auHgzwzM7v6mLlMiblTaIBuq8VYHVBj61wC69r1jfz4wvjicSsMnKg/0',
+  //         top: 27.5,
+  //         left: 29,
+  //         width: 55,
+  //         height: 55,
+  //         borderRadius: true
+  //       },
+  //       {
+  //         type: 'text',
+  //         content: '您的好友【Afan】',
+  //         fontSize: 16,
+  //         color: '#fff',
+  //         textAlign: 'left',
+  //         top: 33,
+  //         left: 96,
+  //         bolder: true
+  //       },
+  //       {
+  //         type: 'text',
+  //         content: '发现一件好货，邀请你一起0元免费拿！',
+  //         fontSize: 15,
+  //         color: '#563D20',
+  //         textAlign: 'left',
+  //         top: 59.5,
+  //         left: 96
+  //       },
+  //       {
+  //         type: 'image',
+  //         url: '/images/food2.jpg',
+  //         top: 136,
+  //         left: 42.5,
+  //         width: 290,
+  //         height: 186,
+  //         opacity: 70
+  //       },
+  //       {
+  //         type: 'image',
+  //         url: '/images/food1.jpg',
+  //         top: 470,
+  //         left: 85,
+  //         width: 68,
+  //         height: 68,
+  //         borderRadius: true
+  //       },
+  //       {
+  //         type: 'text',
+  //         content: '正品MAC魅可口红礼盒生日唇膏小辣椒Chili西柚情人',
+  //         fontSize: 16,
+  //         lineHeight: 21,
+  //         color: '#fff',
+  //         textAlign: 'left',
+  //         top: 336,
+  //         left: 44,
+  //         width: 287,
+  //         MaxLineNumber: 2,
+  //         breakWord: true,
+  //         bolder: true
+  //       },
+  //       {
+  //         type: 'text',
+  //         content: '￥0.00',
+  //         fontSize: 19,
+  //         color: '#E62004',
+  //         textAlign: 'left',
+  //         top: 387,
+  //         left: 44.5,
+  //         bolder: true
+  //       },
+  //       {
+  //         type: 'text',
+  //         content: '原价:￥138.00',
+  //         fontSize: 13,
+  //         color: '#7E7E8B',
+  //         textAlign: 'left',
+  //         top: 391,
+  //         left: 110,
+  //         textDecoration: 'line-through'
+  //       },
+  //       {
+  //         type: 'text',
+  //         content: '长按识别图中二维码帮我砍个价呗~',
+  //         fontSize: 14,
+  //         color: '#383549',
+  //         textAlign: 'left',
+  //         top: 483,
+  //         left: 165.5,
+  //         lineHeight: 20,
+  //         MaxLineNumber: 2,
+  //         breakWord: true,
+  //         width: 125
+  //       },
+  //       {
+  //         type: 'rect',
+  //         background: '#666',
+  //         top: 10,
+  //         left: 10,
+  //         width: 20,
+  //         height: 20,
+  //         shadowBlur: 10,
+  //         shadowColor: "rgba(255,255,255,1)"
+  //       },
+  //       ]
+  //     }
+  //   })
+  //   console.log(this.data)
+  // },
+
+  // eventGetImage(event) {
+  //   console.log(event)
+  //   wx.hideLoading()
+  //   const {
+  //     tempFilePath,
+  //     errMsg
+  //   } = event.detail
+  //   if (errMsg === 'canvasdrawer:ok') {
+  //     this.setData({
+  //       shareImage: tempFilePath
+  //     })
+  //   }
+  // },
+
   banner(event) {
     const that = this;
     const index = event.currentTarget.dataset.index;
@@ -168,16 +218,94 @@ Page({
 
   },
   gobuy(event) {
-    wx.showToast({
-      title: '功能未做',
 
+    var that = this;
+    var wxData = "";
 
+    var roomId = that.data.roomId;
+
+    var openId = app.globalData.openId;
+
+    var sendData = {
+      body: "款项支付",
+      orderOn: util.orderRoomId(),
+      payNum: "1",
+      openId: openId,
+      refundFee: "0",
+      roomId: roomId
+    };
+
+    wx: wx.request({
+      url: app.globalData.urls + '/api/wxPay',
+      data: sendData,
+      header: {
+        "token": app.globalData.token,
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: 'POST',
+      dataType: 'json',
+      responseType: 'text',
+      success: function(res) {
+        wxData = res.data.data;
+
+        wx.request({
+          url: app.globalData.urls + '/api/order/create',
+          method: 'POST',
+          header: {
+            'token': app.globalData.token,
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          data: sendData,
+          success: function() {
+            wx.requestPayment({
+              timeStamp: wxData.timeStamp,
+              nonceStr: wxData.nonceStr,
+              package: wxData.package,
+              signType: 'MD5',
+              paySign: wxData.paySign,
+              success: function(res) {
+                wx.request({
+                  url: app.globalData.urls + '/api/order/updatePayStatus',
+                  data: {
+                    roomId: roomId,
+                    openId: openId
+                  },
+                  success: function(res) {
+                    if (res.data.code == "0") {
+                      wx.showToast({
+                        title: '支付成功',
+                        duration: 3000,
+
+                      })
+                    }
+
+                    that.setData({
+                      payStatus: 0
+                    })
+
+                  }
+                })
+              },
+              fail: function(res) {
+                console.log(res);
+                if (res.errMsg == "requestPayment:fail cancel") {
+                  wx.showToast({
+                    title: '支付取消',
+                    duration: 3000,
+                    icon: "none"
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
     })
   },
 
   callPhone(event) {
     wx.makePhoneCall({
-      phoneNumber: '18581885527',
+      phoneNumber: this.data.room.businessPo.businessPhone,
     })
   },
   location(event) {
@@ -240,7 +368,7 @@ Page({
     //roomId = 5357197;
     if (roomId) {
       wx.request({
-        url: app.globalData.urls + '/api/room/getRoomDetail?roomId=' + roomId,
+        url: app.globalData.urls + '/api/room/getRoomDetail?roomId=' + roomId + '&openId=' + app.globalData.openId,
         success: function(res) {
           var sumPrice = 0;
           if (res.data.code == 0) {
@@ -252,11 +380,21 @@ Page({
               carArrayJson: carArrayJson,
               photo: res.data.data.photo,
               room: res.data.data.room,
-              sumPrice: sumPrice
+              sumPrice: sumPrice,
+              payStatus: res.data.data.payStatus
             })
           }
         }
       })
     }
+  },
+
+  gofav: function(e) {
+    var roomId = e.currentTarget.dataset.roomid;
+    console.log(roomId)
+  },
+
+  refund: function() {
+
   }
 })

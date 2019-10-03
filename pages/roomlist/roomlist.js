@@ -107,7 +107,7 @@ Page({
         url: app.globalData.urls + '/api/room/list',
         data: {
           latitude: that.data.latitude,
-          longitude : that.data.longitude
+          longitude: that.data.longitude
         },
         success: function(res) {
           console.log(res);
@@ -229,7 +229,8 @@ Page({
               })
               that.setData({
                 clickRoom: "",
-                box: false
+                box: false,
+                pwd: ""
               })
               break;
           }

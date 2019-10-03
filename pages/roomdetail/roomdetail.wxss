@@ -1,4 +1,5 @@
 @import '../../components/comment/comment.wxss';
+
 page {
   background-color: #f0f0f0;
 }
@@ -289,83 +290,103 @@ page {
   margin-right: 16rpx;
 }
 
-.grounp .describe{
-    color: #111111;
-    font-size: 28rpx;
-    line-height: 1.3rem;
-    margin: 20rpx 10rpx 20rpx 0;
+.grounp .describe {
+  color: #111;
+  font-size: 28rpx;
+  line-height: 1.3rem;
+  margin: 20rpx 10rpx 20rpx 0;
 }
 
-.notice{
-    background-color: #fff;
-    margin-top: 20rpx;
-    padding-left: 20rpx;
-    padding-bottom: 20rpx;
+.notice {
+  background-color: #fff;
+  margin-top: 20rpx;
+  padding-left: 20rpx;
+  padding-bottom: 20rpx;
 }
 
-.notice .title{
-   border-bottom: 3rpx solid #ddd;
+.notice .title {
+  border-bottom: 3rpx solid #ddd;
   height: 90rpx;
   line-height: 90rpx;
   color: #111;
   font-size: 28rpx;
 }
-.notice .name{
-    margin-top: 20rpx;
-    color: #777777;
-    font-size: 28rpx;
-}
-.notice .info{
-    margin-top: 10rpx;
-    color: #111111;
-    font-size: 26rpx;
-    margin-right: 10rpx;
 
-    line-height: 28rpx;
-
-}
-.notice .info .point{
-    width: 6rpx;
-    height: 6rpx;
-    margin: 8rpx 0;
-    background-color: #111111;
-    border-radius: 6rpx;
-    display: inline-block;
-    margin-right: 4rpx;
+.notice .name {
+  margin-top: 20rpx;
+  color: #777;
+  font-size: 28rpx;
 }
 
-.buy{
-/* position: fixed; */
-bottom: 0;
-left: 0;
-background-color: #fff;
-border-top: 3rpx solid #ddd;
-height: 120rpx;
-width: 100%;
-display: flex;
-flex-wrap: nowrap;
-align-items: center;
+.notice .info {
+  margin-top: 10rpx;
+  color: #111;
+  font-size: 28rpx;
+  margin-right: 10rpx;
+  margin-bottom: 20rpx;
+  line-height: 28rpx;
 }
 
-.buy .oldprice{
-flex: 1;
-color: #999;
-font-size: 24rpx;
-text-decoration: line-through;
-margin-left: 10rpx;
-margin-top: 8rpx;
+.notice .info .point {
+  width: 6rpx;
+  height: 6rpx;
+  margin: 8rpx 0;
+  background-color: #111;
+  border-radius: 6rpx;
+  display: inline-block;
+  margin-right: 4rpx;
 }
-.buy .price{
-  color: #ff6633;
+
+.buy {
+  /* position: fixed; */
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  border-top: 3rpx solid #ddd;
+  height: 120rpx;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.buy .oldprice {
+  flex: 1;
+  color: #999;
+  font-size: 24rpx;
+  text-decoration: line-through;
+  margin-left: 10rpx;
+  margin-top: 8rpx;
+}
+
+.buy .price {
+  color: #f63;
   font-size: 44rpx;
-margin-left: 25rpx;
-font-weight: bold;
+  margin-left: 25rpx;
+  font-weight: bold;
 }
-.buy .gobuy{
-  background-color: #ff6633;
+
+.buy .gobuy {
+  background-color: #f63;
   padding: 22rpx 34rpx;
-color: #fff;
-font-size: 30rpx;
-margin-right: 20rpx;
-border-radius: 4rpx;
+  color: #fff;
+  font-size: 30rpx;
+  margin-right: 20rpx;
+  border-radius: 4rpx;
+}
+
+.buy .refund {
+  background-color: #858382ab;
+  padding: 22rpx 34rpx;
+  color: #fff;
+  font-size: 30rpx;
+  margin-right: 20rpx;
+  border-radius: 4rpx;
+}
+
+.wrap {
+  top: 0rpx;
+  position: fixed;
+  background-color: white;
+  z-index: 2;
 }

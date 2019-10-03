@@ -13,7 +13,7 @@
       </view>
       <view class='type_km'>
         <view class='type'>房间类型 : {{store.typeStr}}</view>
-        <view class='km'>{{km}} Km</view>
+        <view class='km'>{{(store.km)}} Km</view>
       </view>
       <view class="roomTime">
         <view class="time">举行时间 : {{store.startTimeStr}}</view>

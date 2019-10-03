@@ -1,10 +1,10 @@
 {
   "pages": [
-    
-    "pages/index/index",
     "pages/roomlist/roomlist",
+    "pages/index/index",
+    "pages/shareImg/shareImg",
     "pages/business/business",
-    "pages/roomdetail/roomdetail",
+   "pages/roomdetail/roomdetail",
     "pages/my/my",
     "pages/customized/customized",
     "pages/fav-list/fav-list",
