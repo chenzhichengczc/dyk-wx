@@ -56,6 +56,7 @@ Page({
     customItem: '全部',
     totalPrice: 0,
     carArray: [],
+    isPayPre: 1,
     k7: [{
       arr_guige02: '会员',
       guige_key02: 0,
@@ -66,6 +67,14 @@ Page({
     }, {
       arr_guige02: '内部员工',
       guige_key02: 2
+    }],
+    m7: [{
+      arr_select: '是',
+      select_key: 0
+    }, {
+        arr_select: '否',
+        select_key: 1,
+        checked: "true"
     }],
     p7: [{
       arr_select: '是',
@@ -184,6 +193,15 @@ Page({
       that.data.validate = false;
       return
     }
+    if (that.data.isPayPre == 0 && formData.amount > that.data.totalPrice){
+      wx.showToast({
+        icon: 'none',
+        title: '买单金额不能多于套餐价格',
+        mask: true,
+      })
+      that.data.validate = false;
+      return
+    }
     if (formData.name == null || formData.name == '') {
       wx.showToast({
         title: '请输入姓名',
@@ -208,13 +226,21 @@ Page({
       that.data.validate = false;
       return
     }
+    var payNum;
+    if(that.data.isPayPre == 0){
+      payNum = (that.data.totalPrice + formData.amount * (formData.roomVolume-1))*100
+    }else{
+      payNum = (that.data.totalPrice)*100
+    }
+    console.log("type:"+typeof(payNum)+''+payNum)
     if (that.data.validate) {
       wx: wx.request({
         url: app.globalData.urls + '/api/wxPay',
         data: {
           body: "活动参与支付押金",
           orderOn: orderId,
-          payNum: "1",
+          payNum: '1',
+          
           openId: app.globalData.openId,
           roomId: roomId,
           refundFee: "0"
@@ -321,7 +347,7 @@ Page({
 
 
   onShow: function() {
-    debugger
+    
     //回调字符串转JSON对象
     if (this.data.carArray != null && typeof (this.data.carArray) == 'string'){
       var carArray = JSON.parse(this.data.carArray);
@@ -378,13 +404,21 @@ Page({
     });
   },
 
-  radio: function(e) {
-    
+  radioPay: function(e) {
     this.setData({
-       member: e.currentTarget.dataset.id
-
+      isPayPre: e.currentTarget.dataset.id
     })
-    
+    if (this.data.isPayPre == 0 && this.data.totalPrice == 0){
+      wx.showToast({
+        title: '请先选择套餐',
+        mask: true,
+      })
+      this.setData({
+        isPayPre: 1,
+        m7: this.data.m7
+      })
+    }
+   
    
   },
 

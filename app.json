@@ -1,6 +1,6 @@
 {
   "pages": [
-        "pages/roomlist/roomlist",
+    "pages/roomlist/roomlist",
     "pages/customized/customized",
     "pages/index/index",
 

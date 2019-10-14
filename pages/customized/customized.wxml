@@ -160,12 +160,30 @@
         <input name="password" id="password" placeholder="请输入房间密码" />
       </view>
       <view class="info_item bottom_line">
-       <text class="lt">是否公开密码</text>
+       <text class="lt">公开密码</text>
         <radio-group class="radio-group" >
           <label class="radio" wx:for="{{p7}}" wx:key="index">
             <radio value="{{item.arr_select}}"  data-id="{{item.select_key}}" bindtap="passwordRadio" />{{item.arr_select}} 
           </label>
         </radio-group>
+      </view>
+    </view>
+
+     <view class="dingzhi_base_info">
+      <view class="info_item bottom_line">
+        <text class="pa_info">模式</text>
+      </view>
+      <view class='info_item'>
+        <text class="lt">楼主买单</text>
+        <radio-group class="radio-group" bindchange="radioChange" >
+          <label class="radio" wx:for="{{m7}}" wx:key="index">
+            <radio value="{{item.arr_select}}" bindtap='radioPay' data-id="{{item.select_key}}" checked="{{item.checked}}" />{{item.arr_select}}
+          </label>
+        </radio-group>
+      </view>
+      <view class="info_item bottom_line" wx:if="{{isPayPre == 0 && totalPrice != 0}}">
+        <text class="lt">买单金额</text>
+        ¥<input name="amount" id="amount" placeholder="请输入每份买单金额" />
       </view>
     </view>
 
