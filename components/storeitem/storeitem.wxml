@@ -9,7 +9,7 @@
       </view>
       <view class='star_price'>
         <template is='star' data="{{count:store.star}}" />
-        <text class="price">{{store.totalPrice}}/人 活动参与费</text>
+        <text class="price">{{store.totalPrice - store.amount}}/人 活动参与费</text>
       </view>
       <view class='type_km'>
         <view class='type'>房间类型 : {{store.typeStr}}</view>

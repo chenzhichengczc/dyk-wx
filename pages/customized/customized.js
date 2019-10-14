@@ -193,15 +193,6 @@ Page({
       that.data.validate = false;
       return
     }
-    if (that.data.isPayPre == 0 && formData.amount > that.data.totalPrice){
-      wx.showToast({
-        icon: 'none',
-        title: '买单金额不能多于套餐价格',
-        mask: true,
-      })
-      that.data.validate = false;
-      return
-    }
     if (formData.name == null || formData.name == '') {
       wx.showToast({
         title: '请输入姓名',
@@ -226,11 +217,61 @@ Page({
       that.data.validate = false;
       return
     }
+    if (!(/(^[0-9]+$)/.test(formData.roomVolume))){
+      wx.showToast({
+        icon: 'none',
+        title: '房间上限人数请输入数字',
+        mask: true,
+      })
+      that.data.validate = false;
+      return
+    }else if(formData.roomVolume > 8 || formData.roomVolume < 2){
+      wx.showToast({
+        icon: 'none',
+        title: '房间上限人数最多8人',
+        mask: true,
+      })
+      that.data.validate = false;
+      return
+    }
+
+    if (!(/(^[0-9]{5}$)/.test(formData.password))) {
+      wx.showToast({
+        icon: 'none',
+        title: '请输入5位房间数字密码',
+        mask: true,
+      })
+      that.data.validate = false;
+      return
+    }
+    
+    
+
     var payNum;
+    var amount;
     if(that.data.isPayPre == 0){
-      payNum = (that.data.totalPrice + formData.amount * (formData.roomVolume-1))*100
+      if (!(/(^[0-9]+$)/.test(formData.amount))) {
+        wx.showToast({
+          icon: 'none',
+          title: '请输入正确数值买单金额',
+          mask: true,
+        })
+        that.data.validate = false;
+        return 
+      } else if (formData.amount > that.data.totalPrice){
+        wx.showToast({
+          icon: 'none',
+          title: '买单金额不能多于套餐价格',
+          mask: true,
+        })
+        that.data.validate = false;
+        return
+      }
+      payNum = (that.data.totalPrice + formData.amount * (formData.roomVolume-1))*100;
+      amount: formData.amount
     }else{
-      payNum = (that.data.totalPrice)*100
+      payNum = (that.data.totalPrice)*100;
+      amount = 0
     }
     console.log("type:"+typeof(payNum)+''+payNum)
     if (that.data.validate) {
@@ -240,7 +281,7 @@ Page({
           body: "活动参与支付押金",
           orderOn: orderId,
           payNum: '1',
-          
+
           openId: app.globalData.openId,
           roomId: roomId,
           refundFee: "0"
@@ -274,8 +315,9 @@ Page({
                 email: formData.email,
                 carArray: carArray,
                 password: formData.password,
-                isPasswordOut: that.data.isPasswordOut
-                
+                isPasswordOut: that.data.isPasswordOut,
+                isPayPre: that.data.isPayPre,
+                amount: amount
               },
               header: {
                 "token" : app.globalData.token,
