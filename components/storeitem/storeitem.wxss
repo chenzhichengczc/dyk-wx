@@ -100,3 +100,12 @@
   height: 40rpx;
   float: right;
 }
+
+.tips{
+  float: right;
+}
+
+.tipsN{
+  color: red;
+  font-weight: bold;
+}

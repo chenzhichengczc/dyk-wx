@@ -90,7 +90,7 @@ Page({
    
     var wxData = "";
     wx.setStorageSync("formData", formData);
-    console.log("f:" + formData.password)
+    console.log("f:" + formData.plaintext)
     wx.setStorageSync("carArray", carArray);
     var formData = wx.getStorageSync("formData");
   
@@ -168,7 +168,7 @@ Page({
       })
       that.data.validate = false;
     }**/
-    if (formData.password == null || formData.password == '') {
+    if (formData.plaintext == null || formData.plaintext == '') {
       wx.showToast({
         title: '请输入房间密码',
         mask: true,
@@ -247,7 +247,7 @@ Page({
                 phone: formData.mobile,
                 email: formData.email,
                 carArray: carArray,
-                password: formData.password,
+                plaintext: formData.plaintext,
                 isPasswordOut: that.data.isPasswordOut
                 
               },

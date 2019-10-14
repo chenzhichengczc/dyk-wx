@@ -10,10 +10,9 @@ Page({
     painting: {},
     shareImage: '',
     picture: false,
-    banner: ['http://i.dxlfile.com/adm/material/2016_12_12/20161212135600242250.jpg',
-      'http://i.dxlfile.com/adm/material/2017_01_04/2017010411165785666.jpg',
-      'http://i.dxlfile.com/adm/material/2017_01_04/20170104140739205869.jpg',
-      'http://i.dxlfile.com/adm/material/2017_01_16/20170116171332214897.jpg'
+    banner: [
+      '../../images/xc/xc2.jpg',
+      '../../images/xc/xc3.jpg',
     ],
     functions: [{
         url: '../../images/i01.png',
@@ -48,13 +47,13 @@ Page({
     ],
 
     goods: [{
-      url: 'http://p1.meituan.net/wedding/5c683d257d0a418c146308b455bb5b582651471.jpg%40640w_480h_0e_1l%7Cwatermark%3D0',
-      name: '热烈如初',
-      price: '13800',
+      url: '../../images/xc/xc1.jpg',
+      name: '热烈如初，活动组织人',
+      price: '0',
       oldprice: '19800',
-      sell: '5',
-      address: '二环路东五段万达广场8单元2101(近成仁公交站)',
-      km: '1.1km'
+      sell: '99',
+      address: '广州番禺区七号小镇F栋106金诚科创',
+      km: '0km'
     }]
   },
 

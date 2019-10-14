@@ -157,7 +157,7 @@
       </view>
       <view class="info_item bottom_line">
         <text class="lt">房间密码</text>
-        <input name="password" id="password" placeholder="请输入房间密码" />
+        <input name="plaintext" id="plaintext" placeholder="请输入房间密码" />
       </view>
       <view class="info_item bottom_line">
        <text class="lt">是否公开密码</text>
