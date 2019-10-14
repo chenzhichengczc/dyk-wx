@@ -109,7 +109,7 @@
       </view>
     </view>
 
-    <view class="dingzhi_base_info">
+    <!--<view class="dingzhi_base_info">
       <view class="info_item bottom_line">
         <text class="bz_info">会员</text>
       </view>
@@ -120,7 +120,7 @@
           </label>
         </radio-group>
       </view>
-    </view>
+    </view>-->
     <!--订餐确定-->
     <view class="dingzhi_base_info">
       <view class="info_item bottom_line">
@@ -132,11 +132,11 @@
           <image src='/images/icon_arrow.png' role='img' class='icon_arrow'></image>
         </view>
       </view>
-      <view class="info_item {{totalPrice == '0' ? 'hidden' : 'show'}}">
+      <view class="info_item {{totalPrice == '0'  ? 'hidden' : 'show'}}">
         <view class="info_item bottom_line">
           <text class="lt">套餐详情</text>
           <block wx:for='{{carArray}}' wx:index='index' wx:key='index'>
-             {{item.name}} ({{item.num}}份) : ¥{{item.price * item.num}} 
+            <view wx:if='{{item.num !=NaN}}'>{{item.name}} ({{item.num}}份) : ¥{{item.price * item.num}} </view>
           </block>
         </view>
       </view>
@@ -149,25 +149,23 @@
           <image src='/images/icon_arrow.png' role='img' class='icon_arrow'></image>
         </view>
       </view>
-
-
-
     </view>
 
     <view class="dingzhi_base_info">
       <view class="info_item bottom_line">
         <text class="p_info">密码锁栏</text>
       </view>
-      <view class='info_item'>
-        <radio-group class="radio-group" >
-          <label class="radio" wx:for="{{p7}}" wx:key="index">
-            <radio value="{{item.arr_select}}" bindtap='passwordRadio' data-id="{{item.select_key}}" checked="{{item.checked}}" />{{item.arr_select}}
-          </label>
-        </radio-group>
-      </view>
-      <view class="info_item bottom_line" wx:if="{{hasPassword}}">
+      <view class="info_item bottom_line">
         <text class="lt">房间密码</text>
         <input name="password" id="password" placeholder="请输入房间密码" />
+      </view>
+      <view class="info_item bottom_line">
+       <text class="lt">是否公开密码</text>
+        <radio-group class="radio-group" >
+          <label class="radio" wx:for="{{p7}}" wx:key="index">
+            <radio value="{{item.arr_select}}"  data-id="{{item.select_key}}" bindtap="passwordRadio" />{{item.arr_select}} 
+          </label>
+        </radio-group>
       </view>
     </view>
 

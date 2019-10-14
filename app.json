@@ -1,12 +1,13 @@
 {
   "pages": [
-    "pages/roomlist/roomlist",
+        "pages/roomlist/roomlist",
+    "pages/customized/customized",
     "pages/index/index",
+
     "pages/shareImg/shareImg",
     "pages/business/business",
    "pages/roomdetail/roomdetail",
     "pages/my/my",
-    "pages/customized/customized",
     "pages/fav-list/fav-list",
     "pages/menu/menu",
     "pages/logs/logs"

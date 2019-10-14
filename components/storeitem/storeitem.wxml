@@ -17,8 +17,10 @@
       </view>
       <view class="roomTime">
         <view class="time">举行时间 : {{store.startTimeStr}}</view>
-        <button class="btn" wx:if="{{!store.password}}"  catchtap='storelick' data-id="{{store.id}}">立即了解</button>
-        <button class="btn" wx:if="{{store.password}}" catchtap="enterPassword" data-roomId="{{store.id}}">输入密码</button>
+        <button class="btn" catchtap="enterPassword" data-roomId="{{store.id}}">输入密码</button>
+      </view>
+      <view class="password_tip">
+        <view class="passwordTip" wx:if="{{store.isPasswordOut == 0}}">公开房间密码: {{store.password}}       </view>
       </view>
     </view>
   </view>

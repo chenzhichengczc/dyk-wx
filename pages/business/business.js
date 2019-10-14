@@ -251,12 +251,12 @@ Page({
       wx.request({
         url: app.globalData.urls + '/api/join/insert',
         data: {
-          business_name: that.data.business_name,
-          business_phone: that.data.business_phone,
-          business_qq: that.data.business_qq,
-          business_store: that.data.business_store,
-          business_addr: that.data.business_addr,
-          business_message: that.data.business_message,
+          businessName: that.data.business_name,
+          businessPhone: that.data.business_phone,
+          businessQq: that.data.business_qq,
+          businessStore: that.data.business_store,
+          businessAddr: that.data.business_addr,
+          businessMessage: that.data.business_message,
           latitude: that.data.latitude,
           longitude: that.data.longitude,
         },

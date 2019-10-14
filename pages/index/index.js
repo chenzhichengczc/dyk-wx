@@ -332,6 +332,15 @@ Page({
         shareImage: tempFilePath
       })
     }
+  },
+
+  onShareAppMessage: function(res){
+    if(res.from === 'button'){
+    }
+    return {
+      title: "大约客",
+      path: '/pages/index/index'
+    }
   }
 
 })

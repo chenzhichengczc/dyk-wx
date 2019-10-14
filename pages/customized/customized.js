@@ -68,19 +68,20 @@ Page({
       guige_key02: 2
     }],
     p7: [{
-      arr_select: '无密码',
+      arr_select: '是',
       select_key: 0,
-      checked:"true"
     },{
-        arr_select: '有密码',
+        arr_select: '否',
         select_key: 1
     }],
+    isPasswordOut: -1,
     validate: true
   },
   
   submit: function(e) {
     
     var that = this;
+    that.data.validate = true
     console.log(that.data.validate)
     var formData = e.detail.value;
     var roomId = util.randomRoomId();
@@ -88,7 +89,6 @@ Page({
     var carArray = JSON.stringify(this.data.carArray);
    
     var wxData = "";
-    console.log("m:"+that.data.member)
     wx.setStorageSync("formData", formData);
     console.log("f:" + formData.password)
     wx.setStorageSync("carArray", carArray);
@@ -101,18 +101,14 @@ Page({
     end = end.replace(/-/g, "\/")
     var address = formData.addressArea + "," + formData.addressDetail,
       address = address.replace(/,/g, "");
-    var password = '';
-    if(formData.password == undefined && that.data.hasPassword == false){
-      password = '';
-    }else{
-      password = formData.password
-    }
+    
     if (formData.roomName == null || formData.roomName == '') {
       wx.showToast({
         title: '请输入房间名',
         mask: true,
       })
       that.data.validate = false;
+      return
     }
     if (formData.roomTopic == null || formData.roomTopic == '') {
       wx.showToast({
@@ -120,6 +116,7 @@ Page({
         mask: true,
       })
       that.data.validate = false;
+      return
     }
     if (formData.roomType == null || formData.roomType == '') {
       wx.showToast({
@@ -127,6 +124,7 @@ Page({
         mask: true,
       })
       that.data.validate = false;
+      return
     }
     if (formData.addressDetail == null || formData.addressDetail == '') {
       wx.showToast({
@@ -134,6 +132,7 @@ Page({
         mask: true,
       })
       that.data.validate = false;
+      return
     }
     if (formData.roomVolume == null || formData.roomVolume == '') {
       wx.showToast({
@@ -141,6 +140,7 @@ Page({
         mask: true,
       })
       that.data.validate = false;
+      return
     }
     if (formData.endDate == formData.endDate && formData.endTime == formData.startTime) {
       wx.showToast({
@@ -148,6 +148,7 @@ Page({
         mask: true,
       })
       that.data.validate = false;
+      return
     }
     console.log("formData.roomVolume:" + formData.roomVolume)
     
@@ -158,22 +159,30 @@ Page({
         mask: true,
       })
       that.data.validate = false;
+      return
     }
-    if(that.data.member == -1){
+    /**if(that.data.member == -1){
       wx.showToast({
         title: '请选择会员',
         mask: true,
       })
       that.data.validate = false;
+    }**/
+    if (formData.password == null || formData.password == '') {
+      wx.showToast({
+        title: '请输入房间密码',
+        mask: true,
+      })
+      that.data.validate = false;
+      return
     }
-    if (that.data.hasPassword == true){
-      if(formData.password == null || formData.password == ''){
-        wx.showToast({
-          title: '请输入房间密码',
-          mask: true,
-        })
-        that.data.validate = false;
-      }
+    if (that.data.isPasswordOut == -1) {
+      wx.showToast({
+        title: '请选择是否公开密码',
+        mask: true,
+      })
+      that.data.validate = false;
+      return
     }
     if (formData.name == null || formData.name == '') {
       wx.showToast({
@@ -181,6 +190,7 @@ Page({
         mask: true,
       })
       that.data.validate = false;
+      return
     }
     if (formData.mobile == null || formData.mobile == '') {
       wx.showToast({
@@ -188,6 +198,7 @@ Page({
         mask: true,
       })
       that.data.validate = false;
+      return
     }
     if (formData.email == null || formData.email == '') {
       wx.showToast({
@@ -195,6 +206,7 @@ Page({
         mask: true,
       })
       that.data.validate = false;
+      return
     }
     if (that.data.validate) {
       wx: wx.request({
@@ -234,9 +246,9 @@ Page({
                 name: formData.name,
                 phone: formData.mobile,
                 email: formData.email,
-                member: that.data.member,
                 carArray: carArray,
-                password: password
+                password: formData.password,
+                isPasswordOut: that.data.isPasswordOut
                 
               },
               header: {
@@ -309,7 +321,7 @@ Page({
 
 
   onShow: function() {
-    
+    debugger
     //回调字符串转JSON对象
     if (this.data.carArray != null && typeof (this.data.carArray) == 'string'){
       var carArray = JSON.parse(this.data.carArray);
@@ -376,17 +388,11 @@ Page({
    
   },
 
-  passwordRadio: function (e) {
-    if (e.currentTarget.dataset.id == 1) {
-      this.setData({
-        hasPassword: true
-      })
-    }
-    if (e.currentTarget.dataset.id == 0) {
-      this.setData({
-        hasPassword: false
-      })
-    }
+  passwordRadio: function(e){
+    console.log("bbb")
+    this.setData({
+      isPasswordOut: e.currentTarget.dataset.id
+    })
   },
 
   bindPickerChange: function(e) {
