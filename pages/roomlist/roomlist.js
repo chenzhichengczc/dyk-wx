@@ -111,10 +111,14 @@ Page({
         },
         success: function(res) {
           console.log(res);
-          if (res.data.code == 0) {
-
+          if (res.data.code == 0 && res.data.data.length > 0) {
             that.setData({
               roomlist: res.data.data
+            })
+          } else {
+            wx.showToast({
+              title: '暂无房间',
+              duration: 3000
             })
           }
         }
@@ -256,6 +260,59 @@ Page({
     return {
       title: "大约客",
       path: '/pages/roomlist/roomlist'
+    }
+
+  },
+  search: function(e) {
+
+    var that = this;
+
+    var roomList = that.data.roomlist;
+
+    var roomId = e.detail.value;
+
+    if (roomId == "" || roomId == null) {
+      if (that.data.addr) {
+        wx.request({
+          url: app.globalData.urls + '/api/room/list',
+          data: {
+            latitude: that.data.latitude,
+            longitude: that.data.longitude
+          },
+          success: function(res) {
+            console.log(res);
+            if (res.data.code == 0 && res.data.data.length > 0) {
+              that.setData({
+                roomlist: res.data.data
+              })
+            } else {
+              wx.showToast({
+                title: '暂无房间',
+                duration: 3000
+              })
+            }
+          }
+        })
+      }
+    } else {
+      if (that.data.addr) {
+        wx.request({
+          url: app.globalData.urls + '/api/room/listById',
+          data: {
+            roomId: roomId,
+            latitude: that.data.latitude,
+            longitude: that.data.longitude
+          },
+          success: function(res) {
+            console.log(res);
+            if (res.data.code == 0) {
+              that.setData({
+                roomlist: res.data.data
+              })
+            }
+          }
+        })
+      }
     }
   }
 })

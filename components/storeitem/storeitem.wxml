@@ -3,9 +3,11 @@
   <view class='store' data-id="{{store.id}}">
     <image src="{{store.photo}}" mode="aspectFill"></image>
     <view class='info'>
-
       <view class='name'>{{store.roomName}}
-        <image src='../../images/lock.jpg' class="lock" wx:if="{{store.password}}"></image>
+        <span class="tips" wx:if="{{store.password && store.isPasswordOut == 0}}">公开房间:
+          <span class="tipsN">{{store.password}}</span>
+        </span>
+        <image src='../../images/lock.jpg' class="lock" wx:if="{{store.password && store.isPasswordOut != 0}}"></image>
       </view>
       <view class='star_price'>
         <template is='star' data="{{count:store.star}}" />
@@ -19,9 +21,7 @@
         <view class="time">举行时间 : {{store.startTimeStr}}</view>
         <button class="btn" catchtap="enterPassword" data-roomId="{{store.id}}">输入密码</button>
       </view>
-      <view class="password_tip">
-        <view class="passwordTip" wx:if="{{store.isPasswordOut == 0}}">公开房间密码: {{store.password}}       </view>
-      </view>
+
     </view>
   </view>
 </template>

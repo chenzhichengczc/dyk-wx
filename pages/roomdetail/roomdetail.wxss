@@ -390,3 +390,10 @@ page {
   background-color: white;
   z-index: 2;
 }
+
+.cutPrice{
+  text-align: right;
+  margin-right: 16rpx;
+  font-size: 28rpx;
+  color: red;
+}

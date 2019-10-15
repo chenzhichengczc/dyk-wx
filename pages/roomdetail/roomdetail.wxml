@@ -53,6 +53,10 @@
         <view class='value'>{{good.price}}</view>
       </view>
     </block>
+    <view class="cutPrice">
+      <view class='cut'>-</view>
+      <view class='value'>{{amount}}元</view>
+     </view>
     <view class='oldvalue'>
       <view class='name'>总价值</view>
       <view class='value'>{{sumPrice}}元</view>

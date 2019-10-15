@@ -99,7 +99,7 @@ Page({
    
     var wxData = "";
     wx.setStorageSync("formData", formData);
-    console.log("f:" + formData.password)
+    console.log("f:" + formData.plaintext)
     wx.setStorageSync("carArray", carArray);
     var formData = wx.getStorageSync("formData");
   
@@ -177,7 +177,7 @@ Page({
       })
       that.data.validate = false;
     }**/
-    if (formData.password == null || formData.password == '') {
+    if (formData.plaintext == null || formData.plaintext == '') {
       wx.showToast({
         title: '请输入房间密码',
         mask: true,
@@ -235,7 +235,7 @@ Page({
       return
     }
 
-    if (!(/(^[0-9]{5}$)/.test(formData.password))) {
+    if (!(/(^[0-9]{5}$)/.test(formData.plaintext))) {
       wx.showToast({
         icon: 'none',
         title: '请输入5位房间数字密码',
@@ -245,10 +245,19 @@ Page({
       return
     }
     
-    
+    if (!(/^((13[0-9])|(14[0-9])|(15[0-9])|(17[0-9])|(18[0-9]))\d{8}$/.test(formData.mobile))){
+      wx.showToast({
+        icon: 'none',
+        title: '请输入正确的手机号码',
+        mask: true,
+      })
+      that.data.validate = false;
+      return
+    }
 
     var payNum;
     var amount;
+    debugger
     if(that.data.isPayPre == 0){
       if (!(/(^[0-9]+$)/.test(formData.amount))) {
         wx.showToast({
@@ -268,7 +277,7 @@ Page({
         return
       }
       payNum = (that.data.totalPrice + formData.amount * (formData.roomVolume-1))*100;
-      amount: formData.amount
+      amount = formData.amount
     }else{
       payNum = (that.data.totalPrice)*100;
       amount = 0
@@ -314,10 +323,11 @@ Page({
                 phone: formData.mobile,
                 email: formData.email,
                 carArray: carArray,
-                password: formData.password,
                 isPasswordOut: that.data.isPasswordOut,
                 isPayPre: that.data.isPayPre,
-                amount: amount
+                amount: amount,
+                plaintext: formData.plaintext,
+                
               },
               header: {
                 "token" : app.globalData.token,
