@@ -5,7 +5,7 @@ Page({
   data: {
     width: app.systemInfo.windowWidth,
     height: app.systemInfo.windowHeight,
-    wxlogin: true,
+    wxlogin: 'true',
     toplogo: "/images/logo.png",
     painting: {},
     shareImage: '',
@@ -59,36 +59,39 @@ Page({
 
   onLoad: function() {
     var that = this;
-    wx.hideTabBar();
-    wx.getSetting({
-      success: (res) => {
-        if (res.authSetting['scope.userInfo']) {//授权了，可以获取用户信息了
-          wx.getUserInfo({
-            success: (res) => {
-              that.setData({
-                wxlogin: true
-              })
-              wx.showTabBar();
-            }
-          })
-        } else {//未授权，跳到授权页面
-          that.setData({
-            wxlogin: false
-          })
-          wx.hideTabBar();
-        }
-      }
-    })
+    //wx.hideTabBar();
+    wx.showTabBar();
+    
   },
-
+  
   fucClick(event) {
+    var that = this
     const id = event.currentTarget.dataset.id;
     console.log(id);
     switch (id) {
+      
       case "01":
-        wx.navigateTo({
-          url: '/pages/customized/customized',
-        });
+        wx.getSetting({
+          success: (res) => {
+            if (res.authSetting['scope.userInfo']) {//授权了，可以获取用户信息了
+              wx.getUserInfo({
+                success: (res) => {
+                  that.setData({
+                    wxlogin: true
+                  })
+                  wx.navigateTo({
+                    url: '/pages/customized/customized',
+                  });
+                }
+              })
+            } else {//未授权，跳到授权页面
+              that.setData({
+                wxlogin: false
+              })
+            }
+          }
+        })
+
         break;
       case "02":
         wx.switchTab({
@@ -96,14 +99,50 @@ Page({
         })
         break;
       case "04":
-        wx.navigateTo({
-          url: '/pages/fav-list/fav-list',
-        });
+        wx.getSetting({
+          success: (res) => {
+            if (res.authSetting['scope.userInfo']) {//授权了，可以获取用户信息了
+              wx.getUserInfo({
+                success: (res) => {
+                  that.setData({
+                    wxlogin: true
+                  })
+                  wx.navigateTo({
+                    url: '/pages/fav-list/fav-list',
+                  });
+                }
+              })
+            } else {//未授权，跳到授权页面
+              that.setData({
+                wxlogin: false
+              })
+            }
+          }
+        })
+        
         break;
       case "05":
-        wx.navigateTo({
-          url: '/pages/business/business',
-        });
+        wx.getSetting({
+          success: (res) => {
+            if (res.authSetting['scope.userInfo']) {//授权了，可以获取用户信息了
+              wx.getUserInfo({
+                success: (res) => {
+                  that.setData({
+                    wxlogin: true
+                  })
+                  wx.navigateTo({
+                    url: '/pages/business/business',
+                  });
+                }
+              })
+            } else {//未授权，跳到授权页面
+              that.setData({
+                wxlogin: false
+              })
+            }
+          }
+        })
+       
         break;
     }
 
@@ -119,6 +158,9 @@ Page({
         title: '授权失败，请授权使用',
         icon: "none",
         duration: 3000
+      })
+      that.setData({
+        wxlogin: true
       })
       return;
     }
@@ -149,7 +191,6 @@ Page({
               that.setData({
                 wxlogin: true
               })
-              wx.showTabBar();
             }
           })
         }else{
