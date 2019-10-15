@@ -56,19 +56,11 @@ Page({
   //广告栏
 
   eventDraw: function() {
-    wx.request({
-      url: 'https://api.weixin.qq.com/wxa/getwxacode?access_token=' + app.globalData.token,
-      method : 'POST',
-      header:{
-        'content-type': 'application/x-www-form-urlencoded',
-      },      
-      data : {
- 
-      },
-      success : function(e){
-        console.log(e)
-      }
-    })
+   wx.showToast({
+     title: '右上角可以分享哦！房间号在最上面唷！',
+     icon : 'none',
+     duration: 3000
+   })
   },
 
   banner(event) {
@@ -212,6 +204,10 @@ Page({
 
     var roomId = options.roomId;
 
+    wx.setNavigationBarTitle({
+      title: '房间号 : ' + roomId,
+    })
+
     that.setData({
       roomId: roomId,
       addr: options.addr,
@@ -223,7 +219,9 @@ Page({
   },
 
   onShow(options) {
-
+    wx.showShareMenu({
+      
+    })
   },
 
   initRoomDetail: function(roomId) {
@@ -260,5 +258,8 @@ Page({
 
   refund: function() {
 
-  }
+  },
+
+  
+
 })

@@ -89,6 +89,8 @@ Page({
 
   onLoad: function() {
 
+    wx.hideShareMenu({})
+
     var that = this;
 
     //进来后先进行地址选定，然后把当前位置的经纬度拿到后传入后台计算
